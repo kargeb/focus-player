@@ -1,13 +1,14 @@
 import FilmItem from './filmItem/FilmItem';
-import { getAllFilms } from '../../../helpers/apiFunctions';
+// import { getAllFilms } from '../../../helpers/apiFunctions';
 
-const FilmsList = ({ title, columns = 3 }) => (
+const FilmsList = ({ title, films, columns = 3 }) => (
   <div>
     <h3 className="subtitle is-4 has-text-weight-medium">{title}</h3>
+    {console.log(films[0])}
     <ul className="columns is-multiline">
-      {getAllFilms().map((item) => (
-        <li key={item} className={`column is-${columns}`}>
-          <FilmItem />
+      {films.map((item) => (
+        <li key={item.id} className={`column is-${columns}`}>
+          <FilmItem description={item.description} title={item.title} url={item.video_url} />
         </li>
       ))}
     </ul>
