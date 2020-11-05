@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import FilmsList from './filmsList/FilmsList';
+import loadingGif from '../../images/loading_transparent.gif';
 
 const Dashboard = () => {
   const [films, setFilms] = useState('');
@@ -21,7 +22,13 @@ const Dashboard = () => {
     <div className="section has-background-white-bis">
       <div className="container">
         <div className="title is-2 has-text-black">Dashboard</div>
-        {films && <FilmsList title="All films" films={films} />}
+        {films ? (
+          <FilmsList title="All films" films={films} />
+        ) : (
+          <div className="has-text-centered py-6 my-6">
+            <img src={loadingGif} alt="loading gif" />
+          </div>
+        )}
       </div>
       {error && (
         <h3 className="subtitle is-4 has-text-danger">
