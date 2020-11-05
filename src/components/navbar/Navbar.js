@@ -38,9 +38,12 @@ const Navbar = () => (
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <a className="button is-primary" href="/">
-                <strong>Sign up</strong>
-              </a>
+              <div className="button is-primary " href="/">
+                <strong>
+                  <span className="is-size-3">+</span>
+                  <span>Add new film</span>
+                </strong>
+              </div>
               <a className="button is-light" href="/">
                 Log in
               </a>
