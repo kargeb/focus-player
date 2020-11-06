@@ -1,3 +1,5 @@
+import { Link, NavLink } from 'react-router-dom';
+
 const Navbar = () => (
   <nav className="navbar py-3 is-dark" role="navigation" aria-label="main navigation">
     <div className="container">
@@ -27,13 +29,13 @@ const Navbar = () => (
 
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-start">
-          <a className="navbar-item" href="/">
+          <NavLink activeClassName="is-active" className="navbar-item" exact to="/">
             Home
-          </a>
+          </NavLink>
 
-          <a className="navbar-item" href="/">
-            Documentation
-          </a>
+          <NavLink activeClassName="is-active" className="navbar-item" to="/film">
+            Film
+          </NavLink>
         </div>
         <div className="navbar-end">
           <div className="navbar-item">

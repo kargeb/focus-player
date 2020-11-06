@@ -20,31 +20,23 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div>
-      <section className="section has-background-white-bis">
-        <div className="container">
-          <h2 className="title is-2 has-text-black">Dashboard</h2>
-          {films ? (
-            <FilmsList title="All films" films={films} />
-          ) : (
-            <div className="has-text-centered py-6 my-6">
-              <img src={loadingGif} alt="loading gif" />
-            </div>
-          )}
-          {error && (
-            <h3 className="subtitle is-4 has-text-danger">
-              Sorry, we have some problems ... - {error}
-            </h3>
-          )}
-        </div>
-      </section>
-      <section className="section">
-        <div className="container">
-          <h2 className="subtitle is-4 pl-6">Player:</h2>
-          <Film />
-        </div>
-      </section>
-    </div>
+    <section className="section has-background-white-bis">
+      <div className="container">
+        <h2 className="title is-2 has-text-black">Dashboard</h2>
+        {films ? (
+          <FilmsList title="All films" films={films} />
+        ) : (
+          <div className="has-text-centered py-6 my-6">
+            <img src={loadingGif} alt="loading gif" />
+          </div>
+        )}
+        {error && (
+          <h3 className="subtitle is-4 has-text-danger">
+            Sorry, we have some problems ... - {error}
+          </h3>
+        )}
+      </div>
+    </section>
   );
 };
 

@@ -7,7 +7,12 @@ const FilmsList = ({ title, films, columns = 3 }) => (
     <ul className="columns is-multiline">
       {films.map((item) => (
         <li key={item.id} className={`column is-${columns}`}>
-          <FilmItem description={item.description} title={item.title} url={item.video_url} />
+          <FilmItem
+            description={item.description}
+            title={item.title}
+            url={item.video_url}
+            id={item.id}
+          />
         </li>
       ))}
     </ul>
