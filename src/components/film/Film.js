@@ -1,20 +1,23 @@
 import ReactPlayer from 'react-player/youtube';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { test } from '../../redux/reducer';
 
 const Film = () => {
   const { id } = useParams();
+  const film = useSelector((state) => state.films.find((item) => item.id === id));
+  console.log('ZNALAZLEM FILM: ', film);
 
   return (
     <section className="section">
       <div className="container">
-        <h4>id: {id}</h4>
-        <h2 className="subtitle is-4 pl-6">Player:</h2>
+        <h4>URL id: {id}</h4>
+        <h4>FILM id: {film.id}</h4>
+        <h2 className="subtitle is-4 pl-6">{film.title}:</h2>
 
-        <p>JEST FILM</p>
+        <p>{film.description}</p>
 
-        <ReactPlayer url="https://www.youtube.com/watch?v=iIhOfk5IEQg" controls />
+        <ReactPlayer url={film.video_url} controls />
       </div>
     </section>
   );
