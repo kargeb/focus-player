@@ -33,8 +33,8 @@ const Navbar = () => (
             Home
           </NavLink>
 
-          <NavLink activeClassName="is-active" className="navbar-item" to="/film">
-            Film
+          <NavLink activeClassName="is-active" className="navbar-item" to="/films">
+            Films
           </NavLink>
         </div>
         <div className="navbar-end">
