@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import createThumbnail from '../../../../helpers/createThumbnail';
 
 const FilmItem = ({ description, title, url, id }) => (
-  <Link to={`/film/${id}`}>
+  <Link as="div" to={`/film/${id}`}>
     <div className="card">
       <div className="card-image">
         <figure className="image ">
@@ -17,12 +17,8 @@ const FilmItem = ({ description, title, url, id }) => (
         </div>
 
         <div className="content">
-          {description}
-          <p>
-            <a href={url} target="_blank" rel="noreferrer">
-              {url}
-            </a>
-          </p>
+          <p>{description}</p>
+
           <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
         </div>
       </div>

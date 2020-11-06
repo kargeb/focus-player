@@ -1,22 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import FilmsList from './filmsList/FilmsList';
 import loadingGif from '../../images/loading_transparent.gif';
-import Film from '../film/Film';
+import { fetchFilms } from '../../redux/reducer';
 
 const Dashboard = () => {
-  const [films, setFilms] = useState('');
-  const [error, setError] = useState('');
+  // const [films, setFilms] = useState('');
+  // const [error, setError] = useState('');
+
+  const dispatch = useDispatch();
+  const { films, isError } = useSelector((state) => state);
 
   useEffect(() => {
-    fetch('https://agile-depths-96654.herokuapp.com/v1/movies')
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('PObraliśmy dane', data);
-        setFilms(data);
-      })
-      .catch(() => setError("can't load data"));
-
-    console.log('Odalilem sie w use EFFECT');
+    dispatch(fetchFilms());
   }, []);
 
   return (
@@ -30,10 +26,8 @@ const Dashboard = () => {
             <img src={loadingGif} alt="loading gif" />
           </div>
         )}
-        {error && (
-          <h3 className="subtitle is-4 has-text-danger">
-            Sorry, we have some problems ... - {error}
-          </h3>
+        {isError && (
+          <h3 className="subtitle is-4 has-text-danger">Sorry, we have some problems ...</h3>
         )}
       </div>
     </section>

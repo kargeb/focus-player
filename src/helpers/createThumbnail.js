@@ -4,30 +4,22 @@ const createThumbnail = (url) => {
   const unknownUrl = 'https://via.placeholder.com/320x180?text=No+Thumbnail';
   let videoId = null;
 
-  console.log('URL z createThumbnail: ', url);
-
   if (url.includes(matcherWatch)) {
     videoId = url.substr(url.indexOf(matcherWatch) + matcherWatch.length, 11);
   } else if (url.includes(matcherBe)) {
     videoId = url.substr(url.indexOf(matcherBe) + matcherBe.length, 11);
   } else {
-    console.log('unknown  address');
     return unknownUrl;
   }
 
   /*
     StackOverflow: How do I get a YouTube video thumbnail from the YouTube API?
     https://stackoverflow.com/questions/2068344/how-do-i-get-a-youtube-video-thumbnail-from-the-youtube-api
-    https://i.ytimg.com/vi/<VIDEO ID>/mqdefault.jpg -> 320 | 180 resolution
+    https://i.ytimg.com/vi/<VIDEO ID>/mqDefault.jpg -> 320 | 180 resolution
   */
   const thumbnail = `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`;
 
-  console.log('jestem w create thumbnail z takim linkiem:', url);
-
-  console.log(videoId);
-
   return thumbnail;
-  //   https://i.ytimg.com/vi/<VIDEO ID>/mqdefault.jpg
 };
 
 export default createThumbnail;

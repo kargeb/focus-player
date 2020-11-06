@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => (
   <nav className="navbar py-3 is-dark" role="navigation" aria-label="main navigation">
