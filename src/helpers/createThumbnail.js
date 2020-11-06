@@ -15,7 +15,7 @@ const createThumbnail = (url) => {
   /*
     StackOverflow: How do I get a YouTube video thumbnail from the YouTube API?
     https://stackoverflow.com/questions/2068344/how-do-i-get-a-youtube-video-thumbnail-from-the-youtube-api
-    https://i.ytimg.com/vi/<VIDEO ID>/mqdefault.jpg -> 320 | 180 resolution
+    https://i.ytimg.com/vi/<VIDEO ID>/mqDefault.jpg -> 320 | 180 resolution
   */
   const thumbnail = `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`;
 

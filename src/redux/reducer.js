@@ -5,8 +5,20 @@ const FETCH_FILMS_FAILED = 'FETCH_FILMS_FAILED';
 
 export const fetchRequested = () => ({ type: FETCH_FILMS_REQUESTED });
 export const fetchFailed = () => ({ type: FETCH_FILMS_FAILED });
-export const fetchSucceeded = () => ({ type: FETCH_FILMS_SUCCEEDED, payload: films });
+export const fetchSucceeded = (films) => ({ type: FETCH_FILMS_SUCCEEDED, payload: films });
 export const test = () => ({ type: TEST });
+
+export const fetchFilms = () => {
+  return (dispatch) => {
+    dispatch(fetchRequested());
+    fetch('https://agile-depths-96654.herokuapp.com/v1/movies')
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(fetchSucceeded(data));
+      })
+      .catch(() => dispatch(fetchFailed()));
+  };
+};
 
 const INITIAL_STATE = {
   films: [],
@@ -16,7 +28,6 @@ const INITIAL_STATE = {
 };
 
 export const reducer = (state = INITIAL_STATE, action) => {
-  console.log('in REDUCER');
   switch (action.type) {
     case TEST:
       return {

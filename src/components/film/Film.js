@@ -5,8 +5,6 @@ import { test } from '../../redux/reducer';
 
 const Film = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
-  const testValue = useSelector((state) => state.testValue);
 
   return (
     <section className="section">
@@ -17,12 +15,6 @@ const Film = () => {
         <p>JEST FILM</p>
 
         <ReactPlayer url="https://www.youtube.com/watch?v=iIhOfk5IEQg" controls />
-      </div>
-      <div className="has-background-white-bis has-text-centered my-4">
-        <h2 className="is-size-2 has-text-success">{testValue}</h2>
-        <button type="button" className="button is-dark" onClick={() => dispatch(test())}>
-          Click
-        </button>
       </div>
     </section>
   );
