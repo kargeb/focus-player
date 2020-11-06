@@ -4,14 +4,11 @@ const createThumbnail = (url) => {
   const unknownUrl = 'https://via.placeholder.com/320x180?text=No+Thumbnail';
   let videoId = null;
 
-  console.log('URL z createThumbnail: ', url);
-
   if (url.includes(matcherWatch)) {
     videoId = url.substr(url.indexOf(matcherWatch) + matcherWatch.length, 11);
   } else if (url.includes(matcherBe)) {
     videoId = url.substr(url.indexOf(matcherBe) + matcherBe.length, 11);
   } else {
-    console.log('unknown  address');
     return unknownUrl;
   }
 
@@ -22,12 +19,7 @@ const createThumbnail = (url) => {
   */
   const thumbnail = `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`;
 
-  console.log('jestem w create thumbnail z takim linkiem:', url);
-
-  console.log(videoId);
-
   return thumbnail;
-  //   https://i.ytimg.com/vi/<VIDEO ID>/mqdefault.jpg
 };
 
 export default createThumbnail;
