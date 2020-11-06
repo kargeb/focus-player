@@ -5,6 +5,7 @@ import store from './redux/store';
 import Dashboard from './components/dashboard/Dashboard';
 import Navbar from './components/navbar/Navbar';
 import Films from './components/films/Films';
+import Film from './components/film/Film';
 
 function App() {
   return (
@@ -18,9 +19,9 @@ function App() {
           <Route exact path="/films">
             <Films />
           </Route>
-          {/* <Route path="/film/:id">
-            <FilmView />
-          </Route> */}
+          <Route path="/films/:id">
+            <Film />
+          </Route>
         </Switch>
       </Router>
     </Provider>

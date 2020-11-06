@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import createThumbnail from '../../../../helpers/createThumbnail';
 
 const FilmItem = ({ description, title, url, id }) => (
-  <Link as="div" to={`/film/${id}`}>
+  <Link as="div" to={`/films/${id}`}>
     <div className="card">
       <div className="card-image">
         <figure className="image ">

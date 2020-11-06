@@ -17,7 +17,7 @@ const Films = () => {
       <div className="hero-body">
         <div className="container">
           <h2 className="title is-2 ">All films</h2>
-          {films ? (
+          {films.length ? (
             <FilmsList title="All films" films={films} />
           ) : (
             <div className="has-text-centered py-6 my-6">
