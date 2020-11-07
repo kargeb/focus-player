@@ -3,7 +3,7 @@ import FilmItem from './filmItem/FilmItem';
 
 const FilmsList = ({ title, films, columns = 3 }) => (
   <div>
-    <h3 className="subtitle is-4 has-text-weight-medium">{title}</h3>
+    {/* <h3 className="subtitle is-4 has-text-weight-medium">{title}</h3> */}
     <ul className="columns is-multiline">
       {films.map((item) => (
         <li key={item.id} className={`column is-${columns}`}>
