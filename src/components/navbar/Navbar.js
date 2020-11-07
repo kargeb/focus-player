@@ -51,11 +51,15 @@ const Navbar = () => {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <div className="button is-primary " href="/">
-                  <strong>
-                    <span className="is-size-3">+</span>
-                    <span>Add new film</span>
-                  </strong>
+                <div className="button is-primary is-vertical" href="/">
+                  <div className="is-vcentered">
+                    <span className="is-size-3">+</span> Add new film
+                  </div>
+                  {/* <div style={{ lineHeight: '24px' }}>Add new film</div> */}
+                </div>
+                <div className="button is-primary is-vertical" href="/">
+                  <div className="is-size-3">+</div>
+                  <div style={{ lineHeight: '24px' }}>Add new film</div>
                 </div>
                 <a className="button is-light" href="/">
                   Log in
