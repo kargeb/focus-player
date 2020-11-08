@@ -9,18 +9,23 @@ const AddFilm = () => {
             <div className="column is-offset-3 is-6">
               <h3 className="title is-3 has-text-centered">New film</h3>
               <Formik
-                initialValues={{ email: '', password: '' }}
+                initialValues={{ url: '', title: '', desc: '' }}
                 validate={(values) => {
                   const errors = {};
-                  if (!values.email) {
-                    errors.email = 'Required';
+                  if (!values.url) {
+                    errors.url = 'Required';
                   } else if (
-                    /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)?/gi.test(
-                      values.email,
+                    !/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi.test(
+                      values.url,
                     )
                   ) {
-                    errors.email = 'Invalid email address';
+                    errors.url = 'Invalid url address';
                   }
+
+                  if (!values.title) {
+                    errors.title = 'Required';
+                  }
+
                   return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
@@ -40,68 +45,78 @@ const AddFilm = () => {
                   isSubmitting,
                   /* and other goodies */
                 }) => (
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <div className="field">
                       <label className="label" htmlFor="url">
-                        Label
-                        <div className="control">
-                          <input id="url" className="input" type="text" placeholder="Text input" />
+                        Url
+                        <div className="control has-icons-left">
+                          <input
+                            id="url"
+                            name="url"
+                            className="input"
+                            type="text"
+                            placeholder="Video address"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.url}
+                          />
+                          <span className="icon is-small is-left">
+                            <i className="fas fa-link" />
+                          </span>
                         </div>
                       </label>
-                      <p className="help is-success">This is a help text</p>
+                      {console.log('url error:', errors.url)}
+                      {errors.url && <p className="help is-danger">{errors.url}</p>}
                     </div>
                     <div className="field">
                       <label className="label" htmlFor="title">
-                        Username
-                        <div className="control has-icons-left has-icons-right">
+                        Title
+                        <div className="control has-icons-left">
                           <input
                             id="title"
-                            className="input is-success"
+                            className="input"
                             type="text"
                             placeholder="Text input"
-                            value="bulma"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.title}
                           />
                           <span className="icon is-small is-left">
-                            <i className="fas fa-user" />
-                          </span>
-                          <span className="icon is-small is-right">
-                            <i className="fas fa-check" />
+                            <i className="fas fa-heading" />
                           </span>
                         </div>
                       </label>
-                      <p className="help is-success">This username is available</p>
+                      {errors.title && <p className="help is-danger">{errors.title}</p>}
                     </div>
 
                     <div className="field">
                       <label className="label" htmlFor="desc">
-                        Email
-                        <div className="control has-icons-left has-icons-right">
+                        Description
+                        <div className="control has-icons-left">
                           <input
                             id="desc"
-                            className="input is-danger"
-                            type="email"
-                            placeholder="Email input"
-                            value="hello@"
+                            className="input"
+                            type="text"
+                            placeholder="Description"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.desc}
                           />
                           <span className="icon is-small is-left">
-                            <i className="fas fa-envelope" />
-                          </span>
-                          <span className="icon is-small is-right">
-                            <i className="fas fa-exclamation-triangle" />
+                            <i className="fas fa-align-justify" />
                           </span>
                         </div>
                       </label>
-                      <p className="help is-danger">This email is invalid</p>
                     </div>
                     <div className="field is-grouped">
                       <div className="control">
                         <button type="submit" className="button is-link">
-                          Submit
+                          Add
                         </button>
                       </div>
                       <div className="control">
                         <button type="button" className="button is-link is-light">
-                          Cancel
+                          Back
                         </button>
                       </div>
                     </div>
@@ -120,7 +135,11 @@ const AddFilm = () => {
               const errors = {};
               if (!values.email) {
                 errors.email = 'Required';
-              } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+              } else if (
+                !/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi.test(
+                  values.email,
+                )
+              ) {
                 errors.email = 'Invalid email address';
               }
               return errors;
@@ -144,7 +163,7 @@ const AddFilm = () => {
             }) => (
               <form onSubmit={handleSubmit}>
                 <input
-                  type="email"
+                  type="text"
                   name="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -173,3 +192,5 @@ const AddFilm = () => {
 };
 
 export default AddFilm;
+
+// } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
