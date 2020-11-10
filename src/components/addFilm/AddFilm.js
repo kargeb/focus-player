@@ -1,6 +1,20 @@
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { addFilm } from '../../redux/reducer';
 
 const AddFilm = () => {
+  const dispatch = useDispatch();
+
+  const testFilm = {
+    title: 'Z TESTU ',
+    description: 'aSasASaostateczne potwierdzeniesdddd ',
+    video_url: 'https://www.youtube.com/watch?v=2w5CEek1xIU',
+  };
+
+  const runDispatch = () => {
+    dispatch(addFilm(testFilm));
+  };
+
   return (
     <div>
       <section className="section">
@@ -9,7 +23,7 @@ const AddFilm = () => {
             <div className="column is-offset-3 is-6">
               <h3 className="title is-3 has-text-centered">New film</h3>
               <Formik
-                initialValues={{ url: '', title: '', desc: '' }}
+                initialValues={{ url: 'www.onet.pl', title: 'cos', desc: 'piespiespiespies' }}
                 validate={(values) => {
                   const errors = {};
                   if (!values.url) {
@@ -35,10 +49,11 @@ const AddFilm = () => {
                   return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                  setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                  }, 400);
+                  runDispatch();
+                  // setTimeout(() => {
+                  //   alert(JSON.stringify(values, null, 2));
+                  //   setSubmitting(false);
+                  // }, 400);
                 }}
               >
                 {({
