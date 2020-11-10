@@ -1,8 +1,10 @@
 const TEST = 'TEST';
+const ADD_FILM = 'ADD_FILM';
 const FETCH_FILMS_REQUESTED = 'FETCH_FILMS_REQUESTED';
 const FETCH_FILMS_SUCCEEDED = 'FETCH_FILMS_SUCCEEDED';
 const FETCH_FILMS_FAILED = 'FETCH_FILMS_FAILED';
 
+export const addFilm = ({ newFilm }) => ({ type: ADD_FILM, payload: newFilm });
 export const fetchRequested = () => ({ type: FETCH_FILMS_REQUESTED });
 export const fetchFailed = () => ({ type: FETCH_FILMS_FAILED });
 export const fetchSucceeded = (films) => ({ type: FETCH_FILMS_SUCCEEDED, payload: films });

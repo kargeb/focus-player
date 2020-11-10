@@ -26,6 +26,12 @@ const AddFilm = () => {
                     errors.title = 'Required';
                   }
 
+                  if (!values.desc) {
+                    errors.desc = 'Required';
+                  } else if (values.desc.length < 10) {
+                    errors.desc = 'Length must be at least 10 characters long';
+                  }
+
                   return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
@@ -65,8 +71,7 @@ const AddFilm = () => {
                           </span>
                         </div>
                       </label>
-                      {console.log('url error:', errors.url)}
-                      {errors.url && <p className="help is-danger">{errors.url}</p>}
+                      {errors.url && touched.url && <p className="help is-danger">{errors.url}</p>}
                     </div>
                     <div className="field">
                       <label className="label" htmlFor="title">
@@ -86,7 +91,9 @@ const AddFilm = () => {
                           </span>
                         </div>
                       </label>
-                      {errors.title && <p className="help is-danger">{errors.title}</p>}
+                      {errors.title && touched.title && (
+                        <p className="help is-danger">{errors.title}</p>
+                      )}
                     </div>
 
                     <div className="field">
@@ -107,6 +114,9 @@ const AddFilm = () => {
                           </span>
                         </div>
                       </label>
+                      {errors.desc && touched.desc && (
+                        <p className="help is-danger">{errors.desc}</p>
+                      )}
                     </div>
                     <div className="field is-grouped">
                       <div className="control">
@@ -127,70 +137,8 @@ const AddFilm = () => {
           </div>
         </div>
       </section>
-      <div className="section">
-        <div className="container">
-          <Formik
-            initialValues={{ email: '', password: '' }}
-            validate={(values) => {
-              const errors = {};
-              if (!values.email) {
-                errors.email = 'Required';
-              } else if (
-                !/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi.test(
-                  values.email,
-                )
-              ) {
-                errors.email = 'Invalid email address';
-              }
-              return errors;
-            }}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
-            }}
-          >
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              isSubmitting,
-              /* and other goodies */
-            }) => (
-              <form onSubmit={handleSubmit}>
-                <input
-                  type="text"
-                  name="email"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.email}
-                />
-                {/* {errors.email && touched.email && errors.email} */}
-                {errors.email && <p className="help is-danger">This email is invalid</p>}
-                <input
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.password}
-                />
-                {errors.password && touched.password && errors.password}
-                <button type="submit" disabled={isSubmitting}>
-                  Submit
-                </button>
-              </form>
-            )}
-          </Formik>
-        </div>
-      </div>
     </div>
   );
 };
 
 export default AddFilm;
-
-// } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
