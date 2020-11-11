@@ -14,13 +14,10 @@ export const addFilmFailed = () => ({ type: ADD_FILM_FAILED });
 export const fetchRequested = () => ({ type: FETCH_FILMS_REQUESTED });
 export const fetchFailed = () => ({ type: FETCH_FILMS_FAILED });
 export const fetchSucceeded = (films) => ({ type: FETCH_FILMS_SUCCEEDED, payload: films });
-export const test = () => ({ type: TEST });
 
-// export const addFilm = ({ newFilm }) => ({ type: ADD_FILM, payload: newFilm });
 export const addFilm = (newFilm) => {
   return (dispatch) => {
     dispatch(addFilmRequested());
-    console.log('ADD FILM first DISPATCH');
     fetch('https://agile-depths-96654.herokuapp.com/v1/movies', {
       method: 'POST',
       headers: {
@@ -51,6 +48,7 @@ const INITIAL_STATE = {
   testValue: 23,
   isLoading: false,
   isError: false,
+  addFilmLoading: false,
 };
 
 export const reducer = (state = INITIAL_STATE, action) => {
@@ -80,21 +78,21 @@ export const reducer = (state = INITIAL_STATE, action) => {
         films: [...action.payload],
       };
     case ADD_FILM_REQUESTED:
-      console.log('jestem w ADD FILM R E QU E STED');
       return {
         ...state,
+        addFilmLoading: true,
       };
     case ADD_FILM_SUCCEEDED:
-      console.log('jestem w ADD SUCCCCCEEEDEDDDDD');
-      console.log('payload z cussessedd: ', action.payload);
+      console.log('DODALEM FILM!');
       return {
         ...state,
         films: [...state.films, { ...action.payload }],
+        addFilmLoading: false,
       };
     case ADD_FILM_FAILED:
-      console.log('jestem w ADD FILM FAAAAAAILED');
       return {
         ...state,
+        addFilmLoading: false,
       };
     default:
       return state;

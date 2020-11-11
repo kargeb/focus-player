@@ -1,18 +1,13 @@
 import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addFilm } from '../../redux/reducer';
 
 const AddFilm = () => {
   const dispatch = useDispatch();
-
-  const testFilm = {
-    title: 'Z TESTU ',
-    description: 'aSasASaostateczne potwierdzeniesdddd ',
-    video_url: 'https://www.youtube.com/watch?v=2w5CEek1xIU',
-  };
-
-  const runDispatch = () => {
-    dispatch(addFilm(testFilm));
+  const { addFilmLoading } = useSelector((state) => state);
+  console.log('addFilmLoading: ', addFilmLoading);
+  const runDispatch = (newFilm) => {
+    dispatch(addFilm(newFilm));
   };
 
   return (
@@ -23,70 +18,64 @@ const AddFilm = () => {
             <div className="column is-offset-3 is-6">
               <h3 className="title is-3 has-text-centered">New film</h3>
               <Formik
-                initialValues={{ url: 'www.onet.pl', title: 'cos', desc: 'piespiespiespies' }}
+                initialValues={{
+                  video_url: '',
+                  title: '',
+                  description: '',
+                }}
                 validate={(values) => {
                   const errors = {};
-                  if (!values.url) {
-                    errors.url = 'Required';
+                  if (!values.video_url) {
+                    errors.video_url = 'Required';
                   } else if (
                     !/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi.test(
-                      values.url,
+                      values.video_url,
                     )
                   ) {
-                    errors.url = 'Invalid url address';
+                    errors.video_url = 'Invalid url address';
                   }
 
                   if (!values.title) {
                     errors.title = 'Required';
                   }
 
-                  if (!values.desc) {
-                    errors.desc = 'Required';
-                  } else if (values.desc.length < 10) {
-                    errors.desc = 'Length must be at least 10 characters long';
+                  if (!values.description) {
+                    errors.description = 'Required';
+                  } else if (values.description.length < 10) {
+                    errors.description = 'Length must be at least 10 characters long';
                   }
 
                   return errors;
                 }}
-                onSubmit={(values, { setSubmitting }) => {
-                  runDispatch();
-                  // setTimeout(() => {
-                  //   alert(JSON.stringify(values, null, 2));
-                  //   setSubmitting(false);
-                  // }, 400);
+                onSubmit={(values, { resetForm }) => {
+                  runDispatch(values);
+                  resetForm();
                 }}
               >
-                {({
-                  values,
-                  errors,
-                  touched,
-                  handleChange,
-                  handleBlur,
-                  handleSubmit,
-                  isSubmitting,
-                  /* and other goodies */
-                }) => (
+                {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
                   <form onSubmit={handleSubmit}>
                     <div className="field">
-                      <label className="label" htmlFor="url">
+                      <label className="label" htmlFor="video_url">
                         Url
                         <div className="control has-icons-left">
                           <input
-                            id="url"
-                            name="url"
+                            id="video_url"
+                            name="video_url"
                             className="input"
                             type="text"
                             placeholder="Video address"
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            value={values.url}
+                            value={values.video_url}
                           />
                           <span className="icon is-small is-left">
                             <i className="fas fa-link" />
                           </span>
                         </div>
                       </label>
-                      {errors.url && touched.url && <p className="help is-danger">{errors.url}</p>}
+                      {errors.video_url && touched.video_url && (
+                        <p className="help is-danger">{errors.video_url}</p>
+                      )}
                     </div>
                     <div className="field">
                       <label className="label" htmlFor="title">
@@ -96,7 +85,7 @@ const AddFilm = () => {
                             id="title"
                             className="input"
                             type="text"
-                            placeholder="Text input"
+                            placeholder="title"
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.title}
@@ -112,30 +101,34 @@ const AddFilm = () => {
                     </div>
 
                     <div className="field">
-                      <label className="label" htmlFor="desc">
+                      <label className="label" htmlFor="description">
                         Description
                         <div className="control has-icons-left">
                           <input
-                            id="desc"
+                            id="description"
                             className="input"
                             type="text"
-                            placeholder="Description"
+                            placeholder="At least 10 characters ..."
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            value={values.desc}
+                            value={values.description}
                           />
                           <span className="icon is-small is-left">
                             <i className="fas fa-align-justify" />
                           </span>
                         </div>
                       </label>
-                      {errors.desc && touched.desc && (
-                        <p className="help is-danger">{errors.desc}</p>
+                      {errors.description && touched.description && (
+                        <p className="help is-danger">{errors.description}</p>
                       )}
                     </div>
                     <div className="field is-grouped">
                       <div className="control">
-                        <button type="submit" className="button is-link">
+                        <button
+                          type="submit"
+                          className={`button is-link ${addFilmLoading && 'is-loading'}`}
+                          disabled={addFilmLoading}
+                        >
                           Add
                         </button>
                       </div>
