@@ -1,3 +1,8 @@
 html {
-    overflow-y: auto;
+  overflow-y: auto;
+}
+
+.center-by-flex {
+  display: flex;
+  justify-content: center;
 }

@@ -9,20 +9,37 @@ const Film = () => {
   return (
     <section className="section">
       <div className="container">
-        <h4>URL id: {id}</h4>
-        {console.log('Obj FILM:', film)}
-        {console.log('film === undefined ', film === undefined)}
-        {console.log('film !== undefined ', film !== undefined)}
-        {/* {console.log('Object.keys(obj).length === 0 ', Object.keys(film).length === 0)} */}
         {film !== undefined ? (
           <div>
-            <h4>FILM id: {film.id}</h4>
-            <h2 className="subtitle is-4 pl-6">{film.title}:</h2>
-            <p>{film.description}</p>
-            <ReactPlayer url={film.video_url} controls />
+            <div className="columns ">
+              <div className=" column is-8 is-offset-2 has-text-left">
+                <p className="buttons">
+                  <button type="button" className="button">
+                    <span className="icon is-small px-5">
+                      <i className="fas fa-long-arrow-alt-left" />
+                    </span>
+                  </button>
+                </p>
+              </div>
+            </div>
+            <div className="section ">
+              <div className="center-by-flex">
+                {/* <div className="is-flex-direction-row is-justify-content-center"> */}
+                <ReactPlayer url={film.video_url} controls />
+              </div>
+            </div>
+            <div className="columns">
+              <div className=" column is-8 is-offset-2 has-text-left">
+                <h2 className="title is-4 is-spaced">{film.title}</h2>
+                <p className="subtitle is-6">{film.description}</p>
+              </div>
+            </div>
           </div>
         ) : (
-          <p>NIE MA FILMU W BAZIE</p>
+          <div className="notification is-danger is-light has-text-centered">
+            <p> Nie ma filmu z takim id :&#40;</p>
+            <p className="mt-2">{id}</p>
+          </div>
         )}
       </div>
     </section>
