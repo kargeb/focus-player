@@ -1,11 +1,13 @@
+import { useHistory } from 'react-router-dom';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFilm } from '../../redux/reducer';
 
 const AddFilm = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { addFilmLoading } = useSelector((state) => state);
-  console.log('addFilmLoading: ', addFilmLoading);
+
   const runDispatch = (newFilm) => {
     dispatch(addFilm(newFilm));
   };
@@ -133,7 +135,11 @@ const AddFilm = () => {
                         </button>
                       </div>
                       <div className="control">
-                        <button type="button" className="button is-link is-light">
+                        <button
+                          type="button"
+                          className="button is-link is-light"
+                          onClick={() => history.goBack()}
+                        >
                           Back
                         </button>
                       </div>

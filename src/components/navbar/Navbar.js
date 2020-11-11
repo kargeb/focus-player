@@ -21,7 +21,6 @@ const Navbar = () => {
               alt="main logo"
             />
           </a>
-
           <a
             role="button"
             className={`navbar-burger burger ${isActive}`}
@@ -29,7 +28,6 @@ const Navbar = () => {
             aria-expanded="false"
             data-target="navbarBasicExample "
             href="/#"
-            // onClick={() => setActive(isActive ? '' : 'is-active')}
             onClick={(e) => handleMenuButtonClick(e)}
           >
             <span aria-hidden="true" />
@@ -59,9 +57,6 @@ const Navbar = () => {
                     <strong>Add new film</strong>
                   </span>
                 </NavLink>
-                <a className="button is-light" href="/">
-                  Log in
-                </a>
               </div>
             </div>
           </div>

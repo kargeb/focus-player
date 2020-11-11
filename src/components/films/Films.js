@@ -1,16 +1,9 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchFilms } from '../../redux/reducer';
+import { useSelector } from 'react-redux';
 import FilmsList from './filmsList/FilmsList';
 import loadingGif from '../../images/loading_transparent.gif';
 
 const Films = () => {
-  // const dispatch = useDispatch();
   const { films, isError } = useSelector((state) => state);
-
-  // useEffect(() => {
-  //   dispatch(fetchFilms());
-  // }, []);
 
   return (
     <section className="hero is-light">
