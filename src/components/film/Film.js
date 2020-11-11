@@ -1,15 +1,28 @@
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player/youtube';
-import { deleteFilm } from '../../redux/reducer';
+import { deleteFilm, editFilm } from '../../redux/reducer';
 
 const Film = () => {
+  const [isEdit, setEdit] = useState(false);
+
   const { id } = useParams();
   const dispatch = useDispatch();
   const film = useSelector((state) => state.films.find((item) => item.id === id));
 
+  const [editedTitle, setEditedTitle] = useState(film.title);
+  const [editedDescription, setEditedDescription] = useState(film.description);
+
   const handleDelete = () => {
     dispatch(deleteFilm(id));
+  };
+
+  const handleEdit = () => {
+    const editedFilm = { ...film, title: editedTitle, description: editedDescription };
+    console.log('FILM:', film);
+    console.log('EditedFilm:', editedFilm);
+    dispatch(editFilm(editedFilm));
   };
 
   return (
@@ -31,7 +44,11 @@ const Film = () => {
               </div>
               <div className="column is-2">
                 <p className="buttons">
-                  <button type="button" className="button" disabled>
+                  <button
+                    type="button"
+                    className={`button ${isEdit && 'is-success'}`}
+                    onClick={() => setEdit(!isEdit)}
+                  >
                     <span className="icon is-small px-5">
                       <i className="fas fa-edit" />
                     </span>
@@ -50,12 +67,42 @@ const Film = () => {
                 <ReactPlayer url={film.video_url} controls />
               </div>
             </div>
-            <div className="columns">
-              <div className=" column is-8 is-offset-2 has-text-left">
-                <h2 className="title is-4 is-spaced is-capitalized">{film.title}</h2>
-                <p className="subtitle is-6 is-capitalized">{film.description}</p>
+            {isEdit ? (
+              <div className="columns">
+                <div className=" column is-8 is-offset-2 has-text-left">
+                  <label className="label" htmlFor="editTitle">
+                    Title
+                    <input
+                      id="editTitle"
+                      className="input"
+                      type="text"
+                      value={editedTitle}
+                      onChange={(e) => setEditedTitle(e.target.value)}
+                    />
+                  </label>
+                  <label className="label" htmlFor="editDescription">
+                    Description
+                    <input
+                      id="editDescription"
+                      className="input"
+                      type="text"
+                      value={editedDescription}
+                      onChange={(e) => setEditedDescription(e.target.value)}
+                    />
+                  </label>
+                  <button className="button is-info mt-2" type="button" onClick={handleEdit}>
+                    Wyślij
+                  </button>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="columns">
+                <div className=" column is-8 is-offset-2 has-text-left">
+                  <h2 className="title is-4 is-spaced is-capitalized">{film.title}</h2>
+                  <p className="subtitle is-6 is-capitalized">{film.description}</p>
+                </div>
+              </div>
+            )}
           </div>
         ) : (
           <div className="notification is-danger is-light has-text-centered">
