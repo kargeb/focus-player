@@ -23,6 +23,7 @@ const Film = () => {
     console.log('FILM:', film);
     console.log('EditedFilm:', editedFilm);
     dispatch(editFilm(editedFilm));
+    setEdit(false);
   };
 
   return (
@@ -91,7 +92,7 @@ const Film = () => {
                     />
                   </label>
                   <button className="button is-info mt-2" type="button" onClick={handleEdit}>
-                    Wyślij
+                    Confirm changes
                   </button>
                 </div>
               </div>

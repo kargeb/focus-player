@@ -58,9 +58,15 @@ export const editFilm = (editedFilm) => {
       },
       body: JSON.stringify(editedFilmWithoutId),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        console.log('response: ', response);
+        return response.json();
+      })
       .then((data) => dispatch(editFilSucceeded(data)))
-      .catch((err) => dispatch(editFilmFailed(err)));
+      .catch((err) => {
+        console.log('JESTEM W CACZU EDITOWYM!!!!');
+        return dispatch(editFilmFailed(err));
+      });
   };
 };
 
@@ -160,12 +166,13 @@ export const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
       };
-    case EDIT_FILM_SUCCEEDED:
-      console.log('SUCCEDEDD EDITED!!! ', action.payload);
+    case EDIT_FILM_SUCCEEDED: {
+      const filmsWithoutEditedOne = state.films.filter((film) => film.id !== action.payload.id);
       return {
         ...state,
-        // films: [...state.films, { ...action.payload }],
+        films: [...filmsWithoutEditedOne, { ...action.payload }],
       };
+    }
     case EDIT_FILM_FAILED:
       console.log('EDITTTTT FILM FAILED!!!');
       return {
