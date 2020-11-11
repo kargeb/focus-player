@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player/youtube';
 import { deleteFilm } from '../../redux/reducer';
 
@@ -46,7 +46,7 @@ const Film = () => {
               </div>
             </div>
             <div className="section ">
-              <div className="center-by-flex">
+              <div className="custom_center-by-flex">
                 <ReactPlayer url={film.video_url} controls />
               </div>
             </div>

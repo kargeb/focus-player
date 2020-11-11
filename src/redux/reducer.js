@@ -25,21 +25,17 @@ export const deleteFilmSucceeded = (deletedFilm) => ({
   type: DELETE_FILM_SUCCEEDED,
   payload: deletedFilm,
 });
-export const deleteFilmFailed = () => ({ type: DELETE_FILM_FAILED });
+export const deleteFilmFailed = (err) => ({ type: DELETE_FILM_FAILED, payload: err });
 
 export const deleteFilm = (selectedFilm) => {
   return (dispatch) => {
     dispatch(deleteFilmRequested());
-    console.log('ID usuwanego filmu:', selectedFilm);
     fetch(`https://agile-depths-96654.herokuapp.com/v1/movies/${selectedFilm}`, {
       method: 'DELETE',
     })
-      .then((response) => {
-        console.log('RESPONSE po DELETE:', response);
-        return response;
-      })
-      .then((data) => dispatch(deleteFilmSucceeded('f09ec338-2ad1-4c6a-98dc-dbbc13c66b86')))
-      .catch((err) => console.log('wyjebalo error', err));
+      .then((response) => response)
+      .then(() => dispatch(deleteFilmSucceeded(selectedFilm)))
+      .catch((err) => dispatch(deleteFilmFailed(err)));
   };
 };
 
@@ -117,20 +113,23 @@ export const reducer = (state = INITIAL_STATE, action) => {
         addFilmLoading: false,
       };
     case ADD_FILM_FAILED:
+      console.log('ADD FILM FAILED!!!');
       return {
         ...state,
         addFilmLoading: false,
       };
     case DELETE_FILM_REQUESTED:
-      console.log('DELETE FILM REQUESTED ZE REDUCERA');
+      console.log('DELETE FILM FAILED!!!', action.payload);
       return {
         ...state,
       };
-    case DELETE_FILM_SUCCEEDED:
-      console.log('DELET FILM SUCCEDDDDEDDDDD z paylod:', action.payload);
+    case DELETE_FILM_SUCCEEDED: {
+      const filmsWithoutDeletedOne = state.films.filter((film) => film.id !== action.payload);
       return {
         ...state,
+        films: [...filmsWithoutDeletedOne],
       };
+    }
     default:
       return state;
   }
