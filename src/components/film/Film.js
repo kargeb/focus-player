@@ -9,7 +9,7 @@ const Film = () => {
   const film = useSelector((state) => state.films.find((item) => item.id === id));
 
   const handleDelete = () => {
-    dispatch(deleteFilm());
+    dispatch(deleteFilm(id));
   };
 
   return (
