@@ -11,8 +11,14 @@ const Film = () => {
   const dispatch = useDispatch();
   const film = useSelector((state) => state.films.find((item) => item.id === id));
 
-  const [editedTitle, setEditedTitle] = useState(film.title);
-  const [editedDescription, setEditedDescription] = useState(film.description);
+  const [editedTitle, setEditedTitle] = useState('');
+  const [editedDescription, setEditedDescription] = useState('');
+
+  const toggleEditMode = () => {
+    setEditedTitle(film.title);
+    setEditedDescription(film.description);
+    setEdit(!isEdit);
+  };
 
   const handleDelete = () => {
     dispatch(deleteFilm(id));
@@ -43,18 +49,8 @@ const Film = () => {
                   </Link>
                 </p>
               </div>
-              <div className="column is-2">
+              <div className="column is-offset-1 is-1">
                 <p className="buttons">
-                  <button
-                    type="button"
-                    className={`button ${isEdit && 'is-success'}`}
-                    onClick={() => setEdit(!isEdit)}
-                  >
-                    <span className="icon is-small px-5">
-                      <i className="fas fa-edit" />
-                    </span>
-                  </button>
-
                   <button type="button" className="button" onClick={handleDelete}>
                     <span className="icon is-small px-5">
                       <i className="fas fa-trash-alt" />
@@ -70,7 +66,7 @@ const Film = () => {
             </div>
             {isEdit ? (
               <div className="columns">
-                <div className=" column is-8 is-offset-2 has-text-left">
+                <div className=" column is-offset-2 is-6  has-text-left">
                   <label className="label" htmlFor="editTitle">
                     Title
                     <input
@@ -91,16 +87,38 @@ const Film = () => {
                       onChange={(e) => setEditedDescription(e.target.value)}
                     />
                   </label>
-                  <button className="button is-info mt-2" type="button" onClick={handleEdit}>
+                  <button className="button is-success  mt-2" type="button" onClick={handleEdit}>
                     Confirm changes
+                  </button>
+                </div>
+                <div className="column is-offset-1 is-1">
+                  <button
+                    type="button"
+                    className={`button  ${isEdit && 'is-success'}`}
+                    onClick={toggleEditMode}
+                  >
+                    <span className="icon is-small px-5">
+                      <i className="fas fa-edit" />
+                    </span>
                   </button>
                 </div>
               </div>
             ) : (
               <div className="columns">
-                <div className=" column is-8 is-offset-2 has-text-left">
+                <div className=" column is-offset-2 is-6  has-text-left">
                   <h2 className="title is-4 is-spaced is-capitalized">{film.title}</h2>
                   <p className="subtitle is-6 is-capitalized">{film.description}</p>
+                </div>
+                <div className="column is-offset-1 is-1">
+                  <button
+                    type="button"
+                    className={`button  ${isEdit && 'is-success'}`}
+                    onClick={toggleEditMode}
+                  >
+                    <span className="icon is-small px-5">
+                      <i className="fas fa-edit" />
+                    </span>
+                  </button>
                 </div>
               </div>
             )}
