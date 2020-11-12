@@ -1,8 +1,17 @@
 html {
   overflow-y: auto;
+  background-color: hsl(0, 0%, 96%);
 }
 
 .custom_center-by-flex {
   display: flex;
   justify-content: center;
+}
+
+.custom_main-logo {
+  padding: 8px 12px;
+  img {
+    max-height: 100px;
+    width: 250px;
+  }
 }
