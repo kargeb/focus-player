@@ -42,14 +42,14 @@ export const deleteFilmFailed = (err) => ({ type: DELETE_FILM_FAILED, payload: e
 export const editFilm = (editedFilm) => {
   return (dispatch) => {
     dispatch(editFilmRequested(editedFilm));
-    const editEndpoint = `https://agile-depths-96654.herokuapp.com/v1/movies/${editedFilm.id}`;
+    const editedEndpoint = `https://agile-depths-96654.herokuapp.com/v1/movies/${editedFilm.id}`;
     const editedFilmWithoutId = {
       title: editedFilm.title,
       description: editedFilm.description,
       video_url: editedFilm.video_url,
     };
 
-    fetch(editEndpoint, {
+    fetch(editedEndpoint, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -57,12 +57,10 @@ export const editFilm = (editedFilm) => {
       body: JSON.stringify(editedFilmWithoutId),
     })
       .then((response) => {
-        console.log('response: ', response);
         return response.json();
       })
       .then((data) => dispatch(editFilSucceeded(data)))
       .catch((err) => {
-        console.log('JESTEM W CACZU EDITOWYM!!!!');
         return dispatch(editFilmFailed(err));
       });
   };
@@ -149,13 +147,11 @@ export const reducer = (state = INITIAL_STATE, action) => {
         addFilmLoading: false,
       };
     case ADD_FILM_FAILED:
-      console.log('ADD FILM FAILED!!!');
       return {
         ...state,
         addFilmLoading: false,
       };
     case EDIT_FILM_REQUESTED:
-      console.log('EDIT REQUEST POSZLO!!!', action.payload);
       return {
         ...state,
       };
@@ -167,12 +163,10 @@ export const reducer = (state = INITIAL_STATE, action) => {
       };
     }
     case EDIT_FILM_FAILED:
-      console.log('EDITTTTT FILM FAILED!!!');
       return {
         ...state,
       };
     case DELETE_FILM_REQUESTED:
-      console.log('DELETE FILM FAILED!!!', action.payload);
       return {
         ...state,
       };

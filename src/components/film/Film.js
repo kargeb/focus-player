@@ -37,8 +37,6 @@ const Film = () => {
 
   const handleEdit = () => {
     const editedFilm = { ...film, title: editedTitle, description: editedDescription };
-    console.log('FILM:', film);
-    console.log('EditedFilm:', editedFilm);
     dispatch(editFilm(editedFilm));
     setEdit(false);
   };
@@ -49,7 +47,7 @@ const Film = () => {
         <div className="modal-background" onClick={() => setDeleteModalOpen(false)} />
         <div className="modal-content">
           <div className="box py-6">
-            <h4 className="title is-5 has-text-centered mb-6">Napewno chcesz usunac ten film?</h4>
+            <h4 className="title is-5 has-text-centered mb-6">Delete this film?</h4>
             <div className="buttons is-centered">
               <button
                 type="button"
@@ -187,7 +185,7 @@ const Film = () => {
               </div>
             ) : (
               <div className="notification is-danger is-light has-text-centered">
-                <p> Nie ma filmu z takim id :&#40;</p>
+                <p> There is no video with this ID :&#40;</p>
                 <p className="mt-2">{id}</p>
               </div>
             )}

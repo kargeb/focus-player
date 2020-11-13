@@ -1,9 +1,7 @@
 import FilmItem from './filmItem/FilmItem';
-// import { getAllFilms } from '../../../helpers/apiFunctions';
 
-const FilmsList = ({ title, films, columns = 3 }) => (
+const FilmsList = ({ films, columns = 3 }) => (
   <div>
-    {/* <h3 className="subtitle is-4 has-text-weight-medium">{title}</h3> */}
     <ul className="columns is-multiline">
       {films.map((item) => (
         <li key={item.id} className={`column is-${columns}`}>
