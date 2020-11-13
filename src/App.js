@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { fetchFilms } from './redux/reducer';
+import Dashboard from './components/dashboard/Dashboard';
+import Navbar from './components/navbar/Navbar';
+import Films from './components/films/Films';
+import Film from './components/film/Film';
+import AddFilm from './components/addFilm/AddFilm';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFilms());
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route exact path="/">
+          <Dashboard />
+        </Route>
+        <Route exact path="/films">
+          <Films />
+        </Route>
+        <Route path="/films/:id">
+          <Film />
+        </Route>
+        <Route path="/add-film">
+          <AddFilm />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
