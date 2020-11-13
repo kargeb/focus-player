@@ -34,11 +34,12 @@ const Navbar = () => {
 
         <div id="navbarBasicExample" className={`navbar-menu ${isActive}`}>
           <div className="navbar-start">
-            <NavLink activeClassName="is-active" className="navbar-item" exact to="/">
-              Home
-            </NavLink>
-
-            <NavLink activeClassName="is-active" className="navbar-item" to="/films">
+            <NavLink
+              activeClassName="is-active"
+              className="navbar-item px-5 ml-4 is-size-5"
+              exact
+              to="/films"
+            >
               Films
             </NavLink>
           </div>

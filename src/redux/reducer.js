@@ -1,5 +1,3 @@
-const TEST = 'TEST';
-
 const ADD_FILM_REQUESTED = 'ADD_FILM_REQUESTED';
 const ADD_FILM_SUCCEEDED = 'ADD_FILM_SUCCEEDED';
 const ADD_FILM_FAILED = 'ADD_FILM_FAILED';
@@ -113,18 +111,13 @@ export const fetchFilms = () => {
 const INITIAL_STATE = {
   films: [],
   testValue: 23,
-  isLoading: false,
+  isLoading: true,
   isError: false,
   addFilmLoading: false,
 };
 
 export const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case TEST:
-      return {
-        ...state,
-        testValue: state.testValue + 5,
-      };
     case FETCH_FILMS_REQUESTED:
       return {
         ...state,

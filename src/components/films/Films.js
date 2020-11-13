@@ -9,7 +9,7 @@ const Films = () => {
     <section className="hero is-light">
       <div className="hero-body">
         <div className="container">
-          <h2 className="title is-2 has-text-centered is-uppercase mb-6">flims</h2>
+          <h2 className="title is-2 has-text-centered is-uppercase mb-6">films</h2>
           {films.length ? (
             <FilmsList title="All films" films={films} />
           ) : (
