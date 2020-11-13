@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import logo from '../../images/Focus-logo-2.svg';
 
 const Navbar = () => {
   const [isActive, setActive] = useState('');
@@ -10,20 +11,15 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar py-3 is-dark" role="navigation" aria-label="main navigation">
+    <nav className="navbar  py-3 is-dark" role="navigation" aria-label="main navigation">
       <div className="container">
         <div className="navbar-brand">
-          <a className="navbar-item" href="https://bulma.io">
-            <img
-              src="https://bulma.io/images/bulma-logo.png"
-              width="112"
-              height="28"
-              alt="main logo"
-            />
-          </a>
+          <Link className="custom_main-logo" to="/">
+            <img src={logo} alt="main logo" />
+          </Link>
           <a
             role="button"
-            className={`navbar-burger burger ${isActive}`}
+            className={`navbar-burger custom_nav-burger burger ${isActive}`}
             aria-label="menu"
             aria-expanded="false"
             data-target="navbarBasicExample "

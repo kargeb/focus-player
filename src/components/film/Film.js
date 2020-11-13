@@ -87,14 +87,23 @@ const Film = () => {
                       onChange={(e) => setEditedDescription(e.target.value)}
                     />
                   </label>
-                  <button className="button is-success  mt-2" type="button" onClick={handleEdit}>
-                    Confirm changes
-                  </button>
+                  <div className="buttons">
+                    <button className="button is-primary  mt-2" type="button" onClick={handleEdit}>
+                      Confirm changes
+                    </button>
+                    <button
+                      className="button is-primary is-outlined  mt-2"
+                      type="button"
+                      onClick={toggleEditMode}
+                    >
+                      Discard
+                    </button>
+                  </div>
                 </div>
                 <div className="column is-offset-1 is-1">
                   <button
                     type="button"
-                    className={`button  ${isEdit && 'is-success'}`}
+                    className={`button  ${isEdit && 'is-primary is-outlined'}`}
                     onClick={toggleEditMode}
                   >
                     <span className="icon is-small px-5">
@@ -112,7 +121,7 @@ const Film = () => {
                 <div className="column is-offset-1 is-1">
                   <button
                     type="button"
-                    className={`button  ${isEdit && 'is-success'}`}
+                    className={`button  ${isEdit && 'is-light'}`}
                     onClick={toggleEditMode}
                   >
                     <span className="icon is-small px-5">
