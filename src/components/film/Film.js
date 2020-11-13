@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import ReactPlayer from 'react-player/youtube';
 import { deleteFilm, editFilm } from '../../redux/reducer';
 
@@ -8,6 +10,8 @@ import loadingGif from '../../images/loading_transparent.gif';
 
 const Film = () => {
   const [isEdit, setEdit] = useState(false);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const history = useHistory();
 
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -23,8 +27,12 @@ const Film = () => {
     setEdit(!isEdit);
   };
 
+  // const handleModalBackgroundClick = (e)
+
   const handleDelete = () => {
     dispatch(deleteFilm(id));
+    setDeleteModalOpen(false);
+    history.push('/films');
   };
 
   const handleEdit = () => {
@@ -37,6 +45,36 @@ const Film = () => {
 
   return (
     <section className="section">
+      <div className={`modal ${isDeleteModalOpen && `is-active`}`}>
+        <div className="modal-background" onClick={() => setDeleteModalOpen(false)} />
+        <div className="modal-content">
+          <div className="box py-6">
+            <h4 className="title is-5 has-text-centered mb-6">Napewno chcesz usunac ten film?</h4>
+            <div className="buttons is-centered">
+              <button
+                type="button"
+                className="button is-primary is-outlined mr-4"
+                onClick={() => handleDelete()}
+              >
+                Yes
+              </button>
+              <button
+                type="button"
+                className="button is-dark is-outlined ml-4"
+                onClick={() => setDeleteModalOpen(false)}
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+        <button
+          type="button"
+          className="modal-close is-large"
+          aria-label="close"
+          onClick={() => setDeleteModalOpen(false)}
+        />
+      </div>
       <div className="container">
         {isLoading ? (
           <div className="has-text-centered py-6 my-6">
@@ -54,21 +92,6 @@ const Film = () => {
                           <i className="fas fa-long-arrow-alt-left" />
                         </span>
                       </Link>
-
-                      {/* <button
-                        type="button"
-                        className={`button ${isEdit && 'is-primary is-outlined'} mr-4`}
-                        onClick={toggleEditMode}
-                      >
-                        <span className="icon is-small px-5">
-                          <i className="fas fa-edit" />
-                        </span>
-                      </button>
-                      <button type="button" className="button" onClick={handleDelete}>
-                        <span className="icon is-small px-5">
-                          <i className="fas fa-trash-alt" />
-                        </span>
-                      </button> */}
                     </p>
                   </div>
                   <div className="column is-offset-1-mobile is-offset-2-tablet is-offset-1-desktop is-4">
@@ -84,7 +107,11 @@ const Film = () => {
                           <i className="fas fa-edit" />
                         </span>
                       </button>
-                      <button type="button" className="button" onClick={handleDelete}>
+                      <button
+                        type="button"
+                        className="button"
+                        onClick={() => setDeleteModalOpen(true)}
+                      >
                         <span className="icon is-small px-5">
                           <i className="fas fa-trash-alt" />
                         </span>
@@ -129,24 +156,13 @@ const Film = () => {
                           Confirm changes
                         </button>
                         <button
-                          className="button is-primary is-outlined  mt-2"
+                          className="button is-dark is-outlined  mt-2"
                           type="button"
                           onClick={toggleEditMode}
                         >
                           Discard
                         </button>
                       </div>
-                    </div>
-                    <div className="column is-offset-1 is-1">
-                      <button
-                        type="button"
-                        className={`button  ${isEdit && 'is-primary is-outlined'} is-hidden`}
-                        onClick={toggleEditMode}
-                      >
-                        <span className="icon is-small px-5">
-                          <i className="fas fa-edit" />
-                        </span>
-                      </button>
                     </div>
                   </div>
                 ) : (
@@ -158,7 +174,6 @@ const Film = () => {
                     <div className="column is-offset-1  is-1  ">
                       <button
                         type="button"
-                        // className={`button  ${isEdit && 'is-light'} is-hidden-tablet`}
                         className="button is-hidden-tablet"
                         onClick={toggleEditMode}
                       >
