@@ -56,7 +56,7 @@ const AddFilm = () => {
               >
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
                   <form onSubmit={handleSubmit}>
-                    <div className="field">
+                    <div className="field mb-4">
                       <label className="label" htmlFor="video_url">
                         Url
                         <div className="control has-icons-left">
@@ -79,7 +79,7 @@ const AddFilm = () => {
                         <p className="help is-danger">{errors.video_url}</p>
                       )}
                     </div>
-                    <div className="field">
+                    <div className="field mb-4">
                       <label className="label" htmlFor="title">
                         Title
                         <div className="control has-icons-left">
@@ -102,7 +102,7 @@ const AddFilm = () => {
                       )}
                     </div>
 
-                    <div className="field">
+                    <div className="field mb-4">
                       <label className="label" htmlFor="description">
                         Description
                         <div className="control has-icons-left">
@@ -124,11 +124,13 @@ const AddFilm = () => {
                         <p className="help is-danger">{errors.description}</p>
                       )}
                     </div>
-                    <div className="field is-grouped">
+                    <div className="field is-grouped mt-5">
                       <div className="control">
                         <button
                           type="submit"
-                          className={`button is-link ${addFilmLoading && 'is-loading'}`}
+                          className={`button is-primary ${
+                            addFilmLoading && 'is-loading'
+                          } px-5 has-text-weight-bold`}
                           disabled={addFilmLoading}
                         >
                           Add
@@ -137,7 +139,7 @@ const AddFilm = () => {
                       <div className="control">
                         <button
                           type="button"
-                          className="button is-link is-light"
+                          className="button is-dark is-outlined"
                           onClick={() => history.goBack()}
                         >
                           Back
