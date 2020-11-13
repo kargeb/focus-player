@@ -47,19 +47,43 @@ const Film = () => {
             {film !== undefined ? (
               <div>
                 <div className="columns is-mobile">
-                  <div className=" column is-offset-1-mobile is-offset-1-tablet is-offset-2-desktop is-6  has-text-left">
+                  <div className=" column is-offset-1-mobile is-offset-1-tablet is-offset-2-desktop is-6 has-text-left">
                     <p className="buttons">
-                      <Link to="/films">
-                        <button type="button" className="button">
-                          <span className="icon is-small px-5">
-                            <i className="fas fa-long-arrow-alt-left" />
-                          </span>
-                        </button>
+                      <Link type="button" role="button" className="button mr-4" to="/films">
+                        <span className="icon is-small px-5">
+                          <i className="fas fa-long-arrow-alt-left" />
+                        </span>
                       </Link>
+
+                      {/* <button
+                        type="button"
+                        className={`button ${isEdit && 'is-primary is-outlined'} mr-4`}
+                        onClick={toggleEditMode}
+                      >
+                        <span className="icon is-small px-5">
+                          <i className="fas fa-edit" />
+                        </span>
+                      </button>
+                      <button type="button" className="button" onClick={handleDelete}>
+                        <span className="icon is-small px-5">
+                          <i className="fas fa-trash-alt" />
+                        </span>
+                      </button> */}
                     </p>
                   </div>
-                  <div className="column is-offset-1-mobile is-offset-2-tablet is-offset-1-desktop is-1">
+                  <div className="column is-offset-1-mobile is-offset-2-tablet is-offset-1-desktop is-4">
                     <p className="buttons">
+                      <button
+                        type="button"
+                        className={`button ${
+                          isEdit && 'is-primary is-outlined'
+                        } mr-4 is-hidden-mobile`}
+                        onClick={toggleEditMode}
+                      >
+                        <span className="icon is-small px-5">
+                          <i className="fas fa-edit" />
+                        </span>
+                      </button>
                       <button type="button" className="button" onClick={handleDelete}>
                         <span className="icon is-small px-5">
                           <i className="fas fa-trash-alt" />
@@ -116,7 +140,7 @@ const Film = () => {
                     <div className="column is-offset-1 is-1">
                       <button
                         type="button"
-                        className={`button  ${isEdit && 'is-primary is-outlined'}`}
+                        className={`button  ${isEdit && 'is-primary is-outlined'} is-hidden`}
                         onClick={toggleEditMode}
                       >
                         <span className="icon is-small px-5">
@@ -134,7 +158,8 @@ const Film = () => {
                     <div className="column is-offset-1  is-1  ">
                       <button
                         type="button"
-                        className={`button  ${isEdit && 'is-light'}`}
+                        // className={`button  ${isEdit && 'is-light'} is-hidden-tablet`}
+                        className="button is-hidden-tablet"
                         onClick={toggleEditMode}
                       >
                         <span className="icon is-small px-5">
