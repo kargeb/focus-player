@@ -12,6 +12,20 @@ const DELETE_FILM_REQUESTED = 'DELETE_FILM_REQUESTED';
 const DELETE_FILM_SUCCEEDED = 'DELETE_FILM_SUCCEEDED';
 const DELETE_FILM_FAILED = 'DELETE_FILM_FAILED';
 
+const EDIT_FILM_REQUESTED = 'EDIT_FILM_REQUESTED';
+const EDIT_FILM_SUCCEEDED = 'EDIT_FILM_SUCCEEDED';
+const EDIT_FILM_FAILED = 'EDIT_FILM_FAILED';
+
+export const editFilmRequested = (editedFilm) => ({
+  type: EDIT_FILM_REQUESTED,
+  payload: editedFilm,
+});
+export const editFilSucceeded = (editedFilm) => ({
+  type: EDIT_FILM_SUCCEEDED,
+  payload: editedFilm,
+});
+export const editFilmFailed = () => ({ type: EDIT_FILM_FAILED });
+
 export const addFilmRequested = (newFilm) => ({ type: ADD_FILM_REQUESTED, payload: newFilm });
 export const addFilSucceeded = (addedFilm) => ({ type: ADD_FILM_SUCCEEDED, payload: addedFilm });
 export const addFilmFailed = () => ({ type: ADD_FILM_FAILED });
@@ -26,6 +40,35 @@ export const deleteFilmSucceeded = (deletedFilm) => ({
   payload: deletedFilm,
 });
 export const deleteFilmFailed = (err) => ({ type: DELETE_FILM_FAILED, payload: err });
+
+export const editFilm = (editedFilm) => {
+  return (dispatch) => {
+    dispatch(editFilmRequested(editedFilm));
+    const editEndpoint = `https://agile-depths-96654.herokuapp.com/v1/movies/${editedFilm.id}`;
+    const editedFilmWithoutId = {
+      title: editedFilm.title,
+      description: editedFilm.description,
+      video_url: editedFilm.video_url,
+    };
+
+    fetch(editEndpoint, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(editedFilmWithoutId),
+    })
+      .then((response) => {
+        console.log('response: ', response);
+        return response.json();
+      })
+      .then((data) => dispatch(editFilSucceeded(data)))
+      .catch((err) => {
+        console.log('JESTEM W CACZU EDITOWYM!!!!');
+        return dispatch(editFilmFailed(err));
+      });
+  };
+};
 
 export const deleteFilm = (selectedFilm) => {
   return (dispatch) => {
@@ -117,6 +160,23 @@ export const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         addFilmLoading: false,
+      };
+    case EDIT_FILM_REQUESTED:
+      console.log('EDIT REQUEST POSZLO!!!', action.payload);
+      return {
+        ...state,
+      };
+    case EDIT_FILM_SUCCEEDED: {
+      const filmsWithoutEditedOne = state.films.filter((film) => film.id !== action.payload.id);
+      return {
+        ...state,
+        films: [...filmsWithoutEditedOne, { ...action.payload }],
+      };
+    }
+    case EDIT_FILM_FAILED:
+      console.log('EDITTTTT FILM FAILED!!!');
+      return {
+        ...state,
       };
     case DELETE_FILM_REQUESTED:
       console.log('DELETE FILM FAILED!!!', action.payload);
