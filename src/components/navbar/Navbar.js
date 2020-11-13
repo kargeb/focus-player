@@ -14,12 +14,12 @@ const Navbar = () => {
     <nav className="navbar  py-3 is-dark" role="navigation" aria-label="main navigation">
       <div className="container">
         <div className="navbar-brand">
-          <Link className=" custom_main-logo" to="/">
+          <Link className="custom_main-logo" to="/">
             <img src={logo} alt="main logo" />
           </Link>
           <a
             role="button"
-            className={`navbar-burger burger ${isActive}`}
+            className={`navbar-burger custom_nav-burger burger ${isActive}`}
             aria-label="menu"
             aria-expanded="false"
             data-target="navbarBasicExample "

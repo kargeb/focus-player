@@ -11,7 +11,38 @@ html {
 .custom_main-logo {
   padding: 8px 12px;
   img {
-    max-height: 100px;
+    max-height: 50px;
     width: 250px;
+  }
+}
+
+.custom_nav-burger {
+  height: 4.25rem;
+  margin-right: 10px;
+
+  span {
+    height: 2px;
+    width: 22px;
+
+    &:nth-child(1) {
+      top: calc(50% - 8px);
+    }
+    &:nth-child(2) {
+      top: calc(50% - 0px);
+    }
+    &:nth-child(3) {
+      top: calc(50% + 8px);
+    }
+  }
+
+  &.is-active {
+    span {
+      &:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      &:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+    }
   }
 }
