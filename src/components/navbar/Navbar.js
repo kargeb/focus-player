@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import logo from '../../images/Focus-logo-2.svg';
+import logo from '../../images/main-logo.svg';
 
 const Navbar = () => {
   const [isActive, setActive] = useState('');

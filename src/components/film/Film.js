@@ -37,8 +37,8 @@ const Film = () => {
       <div className="container">
         {film !== undefined ? (
           <div>
-            <div className="columns ">
-              <div className=" column is-offset-2 is-6  has-text-left">
+            <div className="columns is-mobile">
+              <div className=" column is-offset-1-mobile is-offset-1-tablet is-offset-2-desktop is-6  has-text-left">
                 <p className="buttons">
                   <Link to="/films">
                     <button type="button" className="button">
@@ -49,7 +49,7 @@ const Film = () => {
                   </Link>
                 </p>
               </div>
-              <div className="column is-offset-1 is-1">
+              <div className="column is-offset-1-mobile is-offset-2-tablet is-offset-1-desktop is-1">
                 <p className="buttons">
                   <button type="button" className="button" onClick={handleDelete}>
                     <span className="icon is-small px-5">
@@ -113,12 +113,12 @@ const Film = () => {
                 </div>
               </div>
             ) : (
-              <div className="columns">
-                <div className=" column is-offset-2 is-6  has-text-left">
+              <div className="columns is-mobile ">
+                <div className=" column is-offset-2-tablet is-offset-1-mobile  is-6  has-text-left">
                   <h2 className="title is-4 is-spaced is-capitalized">{film.title}</h2>
                   <p className="subtitle is-6 is-capitalized">{film.description}</p>
                 </div>
-                <div className="column is-offset-1 is-1">
+                <div className="column is-offset-1  is-1  ">
                   <button
                     type="button"
                     className={`button  ${isEdit && 'is-light'}`}
