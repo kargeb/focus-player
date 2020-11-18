@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import ReactPlayer from 'react-player/youtube';
-import { deleteFilm, editFilm } from '../../../../redux/reducer';
+import { deleteFilm, editFilm } from '../../../../redux/filmsReducer';
 import DeleteFilmModal from './deleteFilmModal/DeleteFilmModal';
 import ButtonsContainer from './ButtonsContainer/ButtonsContainer';
 import DescriptionContainer from './DescriptionContainer/DescriptionContainer';

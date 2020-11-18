@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-import { editFilm } from '../../../../../../redux/reducer';
+import { editFilm } from '../../../../../../redux/filmsReducer';
 
 const EditingDescription = ({ film, setEdit }) => {
   const dispatch = useDispatch();

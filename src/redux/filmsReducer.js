@@ -114,7 +114,7 @@ const INITIAL_STATE = {
   addFilmLoading: false,
 };
 
-export const reducer = (state = INITIAL_STATE, action) => {
+export const filmsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_FILMS_REQUESTED:
       return {

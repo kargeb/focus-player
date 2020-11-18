@@ -7,8 +7,8 @@ import NoFilmPrompt from './noFilmPrompt/NoFilmPrompt';
 
 const Film = () => {
   const { id } = useParams();
-  const film = useSelector((state) => state.films.find((item) => item.id === id));
-  const isLoading = useSelector((state) => state.isLoading);
+  const film = useSelector((state) => state.filmsReducer.films.find((item) => item.id === id));
+  const isLoading = useSelector((state) => state.filmsReducer.isLoading);
 
   return (
     <section className="section">
