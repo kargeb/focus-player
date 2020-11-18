@@ -1,10 +1,10 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import ReactPlayer from 'react-player/youtube';
 import { deleteFilm, editFilm } from '../../../../redux/reducer';
+import DeleteFilmModal from './deleteFilmModal/DeleteFilmModal';
+import ButtonsContainer from './ButtonsContainer/ButtonsContainer';
 
 const FilmContainer = ({ film, id }) => {
   const [isEdit, setEdit] = useState(false);
@@ -35,69 +35,18 @@ const FilmContainer = ({ film, id }) => {
 
   return (
     <div>
-      <div className={`modal ${isDeleteModalOpen && `is-active`}`}>
-        <div className="modal-background" onClick={() => setDeleteModalOpen(false)} />
-        <div className="modal-content">
-          <div className="box py-6">
-            <h4 className="title is-5 has-text-centered mb-6">Delete this film?</h4>
-            <div className="buttons is-centered">
-              <button
-                type="button"
-                className="button is-primary is-outlined mr-4"
-                onClick={() => handleDelete()}
-              >
-                Yes
-              </button>
-              <button
-                type="button"
-                className="button is-dark is-outlined ml-4"
-                onClick={() => setDeleteModalOpen(false)}
-              >
-                No
-              </button>
-            </div>
-          </div>
-        </div>
-        <button
-          type="button"
-          className="modal-close is-large"
-          aria-label="close"
-          onClick={() => setDeleteModalOpen(false)}
-        />
-      </div>
-      <div className="columns is-mobile">
-        <div className=" column is-offset-1-mobile is-offset-1-tablet is-offset-2-desktop is-6 has-text-left">
-          <p className="buttons">
-            <Link type="button" role="button" className="button mr-4" to="/films">
-              <span className="icon is-small px-5">
-                <i className="fas fa-long-arrow-alt-left" />
-              </span>
-            </Link>
-          </p>
-        </div>
-        <div className="column is-offset-1-mobile is-offset-2-tablet is-offset-1-desktop is-4">
-          <p className="buttons">
-            <button
-              type="button"
-              className={`button ${isEdit && 'is-primary is-outlined'} mr-4 is-hidden-mobile`}
-              onClick={toggleEditMode}
-            >
-              <span className="icon is-small px-5">
-                <i className="fas fa-edit" />
-              </span>
-            </button>
-            <button type="button" className="button" onClick={() => setDeleteModalOpen(true)}>
-              <span className="icon is-small px-5">
-                <i className="fas fa-trash-alt" />
-              </span>
-            </button>
-          </p>
-        </div>
-      </div>
-      <div className="section ">
-        <div className="custom_center-by-flex">
-          <ReactPlayer url={film.video_url} controls />
-        </div>
+      <DeleteFilmModal
+        setDeleteModalOpen={setDeleteModalOpen}
+        handleDelete={handleDelete}
+        isDeleteModalOpen={isDeleteModalOpen}
+      />
+      <ButtonsContainer
+        isEdit={isEdit}
+        toggleEditMode={toggleEditMode}
+        setDeleteModalOpen={setDeleteModalOpen}
+      />
+      <div className="mt-5 mb-6 custom_center-by-flex">
+        <ReactPlayer url={film.video_url} controls />
       </div>
       {isEdit ? (
         <div className="columns">

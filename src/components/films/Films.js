@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import FilmsList from './filmsList/FilmsList';
-import Loading from '../shared/Loading';
+import Loading from '../common/Loading';
 
 const Films = () => {
   const { films, isError } = useSelector((state) => state);
