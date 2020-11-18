@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import loadingGif from '../../../images/loading_transparent.gif';
+import Loading from '../../shared/Loading';
 import FilmContainer from './filmContainer/FilmContainer';
 import NoFilmPrompt from './noFilmPrompt/NoFilmPrompt';
 
@@ -14,9 +14,7 @@ const Film = () => {
     <section className="section">
       <div className="container">
         {isLoading ? (
-          <div className="has-text-centered py-6 my-6">
-            <img src={loadingGif} alt="loading gif" />
-          </div>
+          <Loading />
         ) : (
           <div>
             {
