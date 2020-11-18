@@ -6,7 +6,7 @@ import { fetchFilms } from './redux/reducer';
 import Dashboard from './components/dashboard/Dashboard';
 import Navbar from './components/navbar/Navbar';
 import Films from './components/films/Films';
-import Film from './components/film/Film';
+import Film from './components/films/film/Film';
 import AddFilm from './components/addFilm/AddFilm';
 
 function App() {
