@@ -10,7 +10,6 @@ const Film = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   dispatch(selectCurrentFilm(id));
-  // const film = useSelector((state) => state.filmsReducer.films.find((item) => item.id === id));
   const film = useSelector((state) => state.filmsReducer.currentFilm);
   const isLoading = useSelector((state) => state.filmsReducer.isLoading);
 
