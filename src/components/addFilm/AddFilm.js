@@ -1,12 +1,12 @@
 import { useHistory } from 'react-router-dom';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFilm } from '../../redux/reducer';
+import { addFilm, filmsReducer } from '../../redux/filmsReducer';
 
 const AddFilm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { addFilmLoading } = useSelector((state) => state);
+  const { addFilmLoading } = useSelector((state) => state.filmsReducer);
 
   const runDispatch = (newFilm) => {
     dispatch(addFilm(newFilm));
