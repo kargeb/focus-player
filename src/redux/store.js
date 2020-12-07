@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { filmsReducer } from './filmsReducer';
 import rootReducer from './rootReducer';
 
 /* eslint-disable no-underscore-dangle */

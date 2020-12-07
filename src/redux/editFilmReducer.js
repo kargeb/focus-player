@@ -12,13 +12,11 @@ const INITIAL_STATE = {
 export const editFilmReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case TOGGLE_EDIT_FILM_MODE:
-      console.log('stan z EDITFILM reducera: ', state);
       return {
         ...state,
         isEditMode: !state.isEditMode,
       };
     case TOGGLE_DELETE_FILM_MODAL:
-      console.log('stan z EDITFILM reducera: ', state);
       return {
         ...state,
         isDeleteModalOpen: !state.isDeleteModalOpen,

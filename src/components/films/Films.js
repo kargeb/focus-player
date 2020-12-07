@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import FilmsList from './filmsList/FilmsList';
 import Loading from '../common/Loading';
-import { filmsReducer } from '../../redux/filmsReducer';
 
 const Films = () => {
   const { films, isError } = useSelector((state) => state.filmsReducer);

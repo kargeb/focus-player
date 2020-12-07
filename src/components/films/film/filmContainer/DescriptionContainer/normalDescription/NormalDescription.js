@@ -1,14 +1,15 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleEditFilmMode } from '../../../../../../redux/editFilmReducer';
 
-const NormalDescription = ({ film }) => {
+const NormalDescription = () => {
   const dispatch = useDispatch();
+  const { currentFilm } = useSelector((state) => state.filmsReducer);
 
   return (
     <div className="columns is-mobile ">
       <div className=" column is-offset-2-tablet is-offset-1-mobile  is-6  has-text-left">
-        <h2 className="title is-4 is-spaced is-capitalized">{film.title}</h2>
-        <p className="subtitle is-6 is-capitalized">{film.description}</p>
+        <h2 className="title is-4 is-spaced is-capitalized">{currentFilm.title}</h2>
+        <p className="subtitle is-6 is-capitalized">{currentFilm.description}</p>
       </div>
       <div className="column is-offset-1  is-1  ">
         <button

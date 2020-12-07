@@ -1,15 +1,16 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { editFilm } from '../../../../../../redux/filmsReducer';
 import { toggleEditFilmMode } from '../../../../../../redux/editFilmReducer';
 
-const EditingDescription = ({ film }) => {
+const EditingDescription = () => {
   const dispatch = useDispatch();
+  const { currentFilm } = useSelector((state) => state.filmsReducer);
 
   const handleEdit = (values) => {
-    const editedFilm = { ...film, title: values.title, description: values.description };
+    const editedFilm = { ...currentFilm, title: values.title, description: values.description };
     dispatch(editFilm(editedFilm));
-    toggleEditFilmMode();
+    dispatch(toggleEditFilmMode());
   };
 
   return (
@@ -17,8 +18,8 @@ const EditingDescription = ({ film }) => {
       <div className=" column is-offset-2 is-6  has-text-left">
         <Formik
           initialValues={{
-            title: film.title,
-            description: film.description,
+            title: currentFilm.title,
+            description: currentFilm.description,
           }}
           validate={(values) => {
             const errors = {};

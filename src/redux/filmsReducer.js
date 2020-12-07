@@ -14,6 +14,13 @@ const EDIT_FILM_REQUESTED = 'EDIT_FILM_REQUESTED';
 const EDIT_FILM_SUCCEEDED = 'EDIT_FILM_SUCCEEDED';
 const EDIT_FILM_FAILED = 'EDIT_FILM_FAILED';
 
+const SELECT_CURRENT_FILM = 'SELECT_CURRENT_FILM';
+
+export const selectCurrentFilm = (id) => ({
+  type: SELECT_CURRENT_FILM,
+  payload: id,
+});
+
 export const editFilmRequested = (editedFilm) => ({
   type: EDIT_FILM_REQUESTED,
   payload: editedFilm,
@@ -112,6 +119,7 @@ const INITIAL_STATE = {
   isLoading: true,
   isError: false,
   addFilmLoading: false,
+  currentFilm: null,
 };
 
 export const filmsReducer = (state = INITIAL_STATE, action) => {
@@ -159,6 +167,7 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
       const filmsWithoutEditedOne = state.films.filter((film) => film.id !== action.payload.id);
       return {
         ...state,
+        currentFilm: { ...action.payload },
         films: [...filmsWithoutEditedOne, { ...action.payload }],
       };
     }
@@ -175,6 +184,13 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         films: [...filmsWithoutDeletedOne],
+      };
+    }
+    case SELECT_CURRENT_FILM: {
+      const currentFilm = state.films.find((item) => item.id === action.payload);
+      return {
+        ...state,
+        currentFilm,
       };
     }
     default:
