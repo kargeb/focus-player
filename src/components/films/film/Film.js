@@ -9,8 +9,8 @@ import { selectCurrentFilm } from '../../../redux/filmsReducer';
 const Film = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+
   dispatch(selectCurrentFilm(id));
-  // const film = useSelector((state) => state.filmsReducer.films.find((item) => item.id === id));
   const film = useSelector((state) => state.filmsReducer.currentFilm);
   const isLoading = useSelector((state) => state.filmsReducer.isLoading);
 
@@ -23,7 +23,7 @@ const Film = () => {
         ) : (
           <div>
             {film !== undefined ?
-              <FilmContainer film={film} id={id} />
+              <FilmContainer/>
             :
               <NoFilmPrompt id={id} />}
           </div>
