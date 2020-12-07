@@ -6,6 +6,7 @@ import { deleteFilm, editFilm } from '../../../../redux/filmsReducer';
 import DeleteFilmModal from './deleteFilmModal/DeleteFilmModal';
 import ButtonsContainer from './ButtonsContainer/ButtonsContainer';
 import DescriptionContainer from './DescriptionContainer/DescriptionContainer';
+import { toggleEditFilmMode } from '../../../../redux/editFilmReducer';
 
 const FilmContainer = ({ film, id }) => {
   const [isEdit, setEdit] = useState(false);

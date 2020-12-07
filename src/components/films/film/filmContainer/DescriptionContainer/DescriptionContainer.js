@@ -1,14 +1,16 @@
+import { useSelector } from 'react-redux';
 import EditingDescription from './editingDescription/EditingDescription';
 import NormalDescription from './normalDescription/NormalDescription';
 
-const DescriptionContainer = ({ isEdit, film, setEdit, toggleEditMode }) => {
+const DescriptionContainer = ({ film }) => {
+  const { isEditMode } = useSelector((state) => state.editFilmReducer);
+  // prettier-ignore
   return (
     <div>
-      {isEdit ? (
-        <EditingDescription film={film} toggleEditMode={toggleEditMode} setEdit={setEdit} />
-      ) : (
-        <NormalDescription film={film} toggleEditMode={toggleEditMode} />
-      )}
+      {isEditMode ?
+        <EditingDescription film={film} />
+      :
+        <NormalDescription film={film} />}
     </div>
   );
 };

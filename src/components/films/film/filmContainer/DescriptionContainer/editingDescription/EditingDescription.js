@@ -1,14 +1,15 @@
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { editFilm } from '../../../../../../redux/filmsReducer';
+import { toggleEditFilmMode } from '../../../../../../redux/editFilmReducer';
 
-const EditingDescription = ({ film, setEdit }) => {
+const EditingDescription = ({ film }) => {
   const dispatch = useDispatch();
 
   const handleEdit = (values) => {
     const editedFilm = { ...film, title: values.title, description: values.description };
     dispatch(editFilm(editedFilm));
-    setEdit(false);
+    toggleEditFilmMode();
   };
 
   return (
@@ -86,7 +87,7 @@ const EditingDescription = ({ film, setEdit }) => {
                   <button
                     type="button"
                     className="button is-dark is-outlined"
-                    onClick={() => setEdit(false)}
+                    onClick={() => dispatch(toggleEditFilmMode())}
                   >
                     Discard
                   </button>
