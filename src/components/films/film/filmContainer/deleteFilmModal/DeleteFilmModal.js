@@ -1,9 +1,25 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom';
+import { toggleDeleteFilmModal } from '../../../../../redux/editFilmReducer';
+import { deleteFilm } from '../../../../../redux/filmsReducer';
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-const DeleteFilmModal = ({ handleDelete, setDeleteModalOpen, isDeleteModalOpen }) => {
+
+const DeleteFilmModal = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { id } = useParams();
+  const { isDeleteModalOpen } = useSelector((state) => state.editFilmReducer);
+
+  const handleDelete = () => {
+    dispatch(deleteFilm(id));
+    dispatch(toggleDeleteFilmModal());
+    history.push('/films');
+  };
+
   return (
     <div className={`modal ${isDeleteModalOpen && `is-active`}`}>
-      <div className="modal-background" onClick={() => setDeleteModalOpen(false)} />
+      <div className="modal-background" onClick={() => dispatch(toggleDeleteFilmModal())} />
       <div className="modal-content">
         <div className="box py-6">
           <h4 className="title is-5 has-text-centered mb-6">Delete this film?</h4>
@@ -18,7 +34,7 @@ const DeleteFilmModal = ({ handleDelete, setDeleteModalOpen, isDeleteModalOpen }
             <button
               type="button"
               className="button is-dark is-outlined ml-4"
-              onClick={() => setDeleteModalOpen(false)}
+              onClick={() => dispatch(toggleDeleteFilmModal())}
             >
               No
             </button>
@@ -29,7 +45,7 @@ const DeleteFilmModal = ({ handleDelete, setDeleteModalOpen, isDeleteModalOpen }
         type="button"
         className="modal-close is-large"
         aria-label="close"
-        onClick={() => setDeleteModalOpen(false)}
+        onClick={() => dispatch(toggleDeleteFilmModal())}
       />
     </div>
   );

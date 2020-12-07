@@ -3,7 +3,7 @@ import FilmsList from './filmsList/FilmsList';
 import Loading from '../common/Loading';
 
 const Films = () => {
-  const { films, isError } = useSelector((state) => state);
+  const { films, isError } = useSelector((state) => state.filmsReducer);
 
   return (
     <section className="hero is-light">
