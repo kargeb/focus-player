@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { toggleEditFilmMode } from '../../../../../redux/editFilmReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleEditFilmMode, toggleDeleteFilmModal } from '../../../../../redux/editFilmReducer';
 
-const ButtonsContainer = ({ isEdit, toggleEditMode, setDeleteModalOpen }) => {
+const ButtonsContainer = () => {
   const dispatch = useDispatch();
+  const { isEditMode } = useSelector((state) => state.editFilmReducer);
 
   return (
     <div className="columns is-mobile">
@@ -20,15 +21,18 @@ const ButtonsContainer = ({ isEdit, toggleEditMode, setDeleteModalOpen }) => {
         <p className="buttons">
           <button
             type="button"
-            className={`button ${isEdit && 'is-primary is-outlined'} mr-4 is-hidden-mobile`}
-            // onClick={toggleEditMode}
+            className={`button ${isEditMode && 'is-primary is-outlined'} mr-4 is-hidden-mobile`}
             onClick={() => dispatch(toggleEditFilmMode())}
           >
             <span className="icon is-small px-5">
               <i className="fas fa-edit" />
             </span>
           </button>
-          <button type="button" className="button" onClick={() => setDeleteModalOpen(true)}>
+          <button
+            type="button"
+            className="button"
+            onClick={() => dispatch(toggleDeleteFilmModal())}
+          >
             <span className="icon is-small px-5">
               <i className="fas fa-trash-alt" />
             </span>
