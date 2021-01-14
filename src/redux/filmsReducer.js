@@ -1,3 +1,7 @@
+// const API_URL = 'https://agile-depths-96654.herokuapp.com';
+
+const API_URL = 'http://localhost:3333';
+
 const ADD_FILM_REQUESTED = 'ADD_FILM_REQUESTED';
 const ADD_FILM_SUCCEEDED = 'ADD_FILM_SUCCEEDED';
 const ADD_FILM_FAILED = 'ADD_FILM_FAILED';
@@ -49,7 +53,7 @@ export const deleteFilmFailed = (err) => ({ type: DELETE_FILM_FAILED, payload: e
 export const editFilm = (editedFilm) => {
   return (dispatch) => {
     dispatch(editFilmRequested(editedFilm));
-    const editedEndpoint = `https://agile-depths-96654.herokuapp.com/v1/movies/${editedFilm.id}`;
+    const editedEndpoint = `${API_URL}/v1/movies/${editedFilm.id}`;
     const editedFilmWithoutId = {
       title: editedFilm.title,
       description: editedFilm.description,
@@ -76,7 +80,7 @@ export const editFilm = (editedFilm) => {
 export const deleteFilm = (selectedFilm) => {
   return (dispatch) => {
     dispatch(deleteFilmRequested());
-    fetch(`https://agile-depths-96654.herokuapp.com/v1/movies/${selectedFilm}`, {
+    fetch(`${API_URL}/v1/movies/${selectedFilm}`, {
       method: 'DELETE',
     })
       .then((response) => response)
@@ -88,7 +92,7 @@ export const deleteFilm = (selectedFilm) => {
 export const addFilm = (newFilm) => {
   return (dispatch) => {
     dispatch(addFilmRequested());
-    fetch('https://agile-depths-96654.herokuapp.com/v1/movies', {
+    fetch(`${API_URL}/v1/movies`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -104,7 +108,7 @@ export const addFilm = (newFilm) => {
 export const fetchFilms = () => {
   return (dispatch) => {
     dispatch(fetchRequested());
-    fetch('https://agile-depths-96654.herokuapp.com/v1/movies')
+    fetch(`${API_URL}/v1/movies`)
       .then((response) => response.json())
       .then((data) => {
         dispatch(fetchSucceeded(data));
