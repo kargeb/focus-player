@@ -43,6 +43,16 @@ const Navbar = () => {
               Films
             </NavLink>
           </div>
+          <div className="navbar-start">
+            <NavLink
+              activeClassName="is-active"
+              className="navbar-item px-5 ml-4 is-size-5"
+              exact
+              to="/playlists"
+            >
+              Playlists
+            </NavLink>
+          </div>
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
