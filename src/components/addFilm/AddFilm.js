@@ -50,7 +50,11 @@ const AddFilm = () => {
                   return errors;
                 }}
                 onSubmit={(values, { resetForm }) => {
-                  runDispatch(values);
+                  const newVales = { ...values, watched: false };
+                  // console.log('values z add film', values);
+                  // values[watched] = true;
+                  // console.log('values z watched add film', newVales);
+                  runDispatch(newVales);
                   resetForm();
                 }}
               >

@@ -125,6 +125,18 @@ export const fetchFilms = () => {
   };
 };
 
+// export const toggleFilmWatched = () => {
+//   return (dispatch) => {
+//     dispatch(fetchRequested());
+//     fetch(`${API_URL}/v1/movies`)
+//       .then((response) => response.json())
+//       .then((data) => {
+//         dispatch(fetchSucceeded(data));
+//       })
+//       .catch(() => dispatch(fetchFailed()));
+//   };
+// };
+
 const INITIAL_STATE = {
   films: [],
   testValue: 23,
