@@ -20,6 +20,13 @@ const EDIT_FILM_FAILED = 'EDIT_FILM_FAILED';
 
 const SELECT_CURRENT_FILM = 'SELECT_CURRENT_FILM';
 
+const HANDLE_WATCHED_FILM_CHECKBOX = 'HANDLE_WATCHED_FILM_CHECKBOX';
+
+export const handleWatchedFilmCheckbox = (isWatched) => ({
+  type: HANDLE_WATCHED_FILM_CHECKBOX,
+  payload: isWatched,
+});
+
 export const selectCurrentFilm = (id) => ({
   type: SELECT_CURRENT_FILM,
   payload: id,
@@ -58,6 +65,7 @@ export const editFilm = (editedFilm) => {
       title: editedFilm.title,
       description: editedFilm.description,
       video_url: editedFilm.video_url,
+      watched: true,
     };
 
     fetch(editedEndpoint, {
@@ -135,6 +143,7 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
         isError: false,
       };
     case FETCH_FILMS_FAILED:
+      console.log('FETCH_FILMS_FAILED');
       return {
         ...state,
         isLoading: false,
@@ -159,6 +168,7 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
         addFilmLoading: false,
       };
     case ADD_FILM_FAILED:
+      console.log('ADD_FILM_FAILED');
       return {
         ...state,
         addFilmLoading: false,
@@ -176,6 +186,7 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
       };
     }
     case EDIT_FILM_FAILED:
+      console.log('EDITED FILM FAILED');
       return {
         ...state,
       };
@@ -195,6 +206,12 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentFilm,
+      };
+    }
+    case HANDLE_WATCHED_FILM_CHECKBOX: {
+      const isWatched = action.payload;
+      return {
+        ...state,
       };
     }
     default:

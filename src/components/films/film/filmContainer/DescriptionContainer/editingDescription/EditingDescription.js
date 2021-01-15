@@ -8,7 +8,12 @@ const EditingDescription = () => {
   const { currentFilm } = useSelector((state) => state.filmsReducer);
 
   const handleEdit = (values) => {
-    const editedFilm = { ...currentFilm, title: values.title, description: values.description };
+    const editedFilm = {
+      ...currentFilm,
+      title: values.title,
+      watched: true,
+      description: values.description,
+    };
     dispatch(editFilm(editedFilm));
     dispatch(toggleEditFilmMode());
   };

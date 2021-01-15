@@ -46,3 +46,23 @@ html {
     }
   }
 }
+
+.overflow {
+  overflow: visible;
+}
+
+.watched-container {
+  position: relative;
+  // overflow: ;
+}
+
+.watched {
+  right: -10px;
+  top: -10px;
+  border-radius: 10px;
+  padding: 5px 8px;
+  z-index: 10000;
+  font-size: 15px;
+  position: absolute;
+  // background-color: #666;
+}
