@@ -65,7 +65,7 @@ export const editFilm = (editedFilm) => {
       title: editedFilm.title,
       description: editedFilm.description,
       video_url: editedFilm.video_url,
-      watched: true,
+      watched: editedFilm.watched,
     };
 
     fetch(editedEndpoint, {

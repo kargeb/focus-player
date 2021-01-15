@@ -1,10 +1,22 @@
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { editFilm } from '../../../../redux/filmsReducer';
 
 const WatchedCheckBox = () => {
+  const { currentFilm } = useSelector((state) => state.filmsReducer);
+  const dispatch = useDispatch();
+
   const [isChecked, setCheckbox] = useState(false);
   const [isDisabled, setDisability] = useState(false);
 
   const handleCheckbox = (e) => {
+    console.log('isCHECKED: ', isChecked);
+    const editedFilm = {
+      ...currentFilm,
+      watched: !isChecked,
+    };
+    dispatch(editFilm(editedFilm));
+    // dispatch(toggleEditFilmMode());
     setCheckbox(e.target.checked);
     console.log(e.target);
     setDisability(true);
