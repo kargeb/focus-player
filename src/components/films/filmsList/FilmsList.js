@@ -10,6 +10,7 @@ const FilmsList = ({ films, columns = 3 }) => (
             title={item.title}
             url={item.video_url}
             id={item.id}
+            timestamp={item.timestamp}
           />
         </li>
       ))}

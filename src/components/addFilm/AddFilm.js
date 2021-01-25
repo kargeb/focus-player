@@ -50,10 +50,14 @@ const AddFilm = () => {
                   return errors;
                 }}
                 onSubmit={(values, { resetForm }) => {
-                  const newVales = { ...values, watched: false };
+                  const dateNow = new Date().getTime();
+                  console.log('to jest timspatnmp:', dateNow);
+                  console.log('TERAZ DATA JEST z niego:', new Date(dateNow));
+                  const newVales = { ...values, watched: false, timestamp: dateNow };
                   // console.log('values z add film', values);
                   // values[watched] = true;
                   // console.log('values z watched add film', newVales);
+
                   runDispatch(newVales);
                   resetForm();
                 }}

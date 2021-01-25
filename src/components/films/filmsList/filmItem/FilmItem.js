@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import createThumbnail from '../../../../helpers/createThumbnail';
 
-const FilmItem = ({ description, title, url, id }) => (
+const FilmItem = ({ description, title, url, id, timestamp }) => (
   <Link as="div" to={`/films/${id}`}>
     <div className="card overflow">
       <div className="card-image watched-container ">
@@ -29,6 +29,7 @@ const FilmItem = ({ description, title, url, id }) => (
           <p className="_description">{description}</p>
 
           <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+          <time dateTime="2016-1-1">{timestamp}</time>
         </div>
       </div>
     </div>
