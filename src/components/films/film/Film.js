@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Loading from '../../common/Loading';
-import FilmContainer from './filmContainer/FilmContainer';
+import NewFilmContainer from './filmContainer/NewFilmContainer';
 import NoFilmPrompt from './noFilmPrompt/NoFilmPrompt';
 import { selectCurrentFilm } from '../../../redux/filmsReducer';
 
@@ -23,7 +23,7 @@ const Film = () => {
         ) : (
           <div>
             {film !== undefined ?
-              <FilmContainer/>
+              <NewFilmContainer/>
             :
               <NoFilmPrompt id={id} />}
           </div>

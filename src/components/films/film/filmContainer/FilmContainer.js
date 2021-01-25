@@ -1,4 +1,5 @@
 import ReactPlayer from 'react-player/youtube';
+
 import { useSelector } from 'react-redux';
 import DeleteFilmModal from './deleteFilmModal/DeleteFilmModal';
 import ButtonsContainer from './ButtonsContainer/ButtonsContainer';
