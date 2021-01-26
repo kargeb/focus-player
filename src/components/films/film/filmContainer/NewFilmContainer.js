@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import ReactPlayer from 'react-player/youtube';
 import { useState } from 'react';
@@ -9,6 +11,7 @@ import WatchedCheckBox from './WatchedCheckBox';
 
 const FilmContainer = () => {
   const { currentFilm } = useSelector((state) => state.filmsReducer);
+  const [isWatched, setWatched] = useState(false);
 
   return (
     <div className="container">
@@ -34,9 +37,20 @@ const FilmContainer = () => {
           <div className="column is-4-widescreen is-offset-0-widescreen is-8-tablet is-offset-2-tablet featured-content va">
             <div>
               <div className="is-flex is-justify-content-space-between is-align-items-center">
-                <a className="button is-primary is-size-4 is-outlined _without-border is-medium is-flex is-align-items-center">
+                <a
+                  className="button is-primary is-size-4 is-outlined _without-border is-medium is-flex is-align-items-center"
+                  onClick={() => setWatched(!isWatched)}
+                >
                   <span className="icon">
-                    <i className="far fa-square fa-lg" />
+                    {isWatched ? (
+                      <p>
+                        <i className="fas fa-check-square fa-lg" />
+                      </p>
+                    ) : (
+                      <span>
+                        <i className="far fa-square fa-lg" />
+                      </span>
+                    )}
                   </span>
                   <span>watched</span>
                 </a>
@@ -57,7 +71,7 @@ const FilmContainer = () => {
                       <i className="fas fa-edit fa-lg" />
                     </span>
                   </button>
-                  <button
+                  <a
                     type="button"
                     className="button is-primary _without-border is-outlined"
                     // onClick={() => dispatch(toggleEditFilmMode())}
@@ -65,12 +79,12 @@ const FilmContainer = () => {
                     <span className="icon  is-medium px-5">
                       <i className="fas fa-trash-alt fa-lg" />
                     </span>
-                  </button>
+                  </a>
                 </div>
               </div>
               <br />
               <h1 className="title post-title">{currentFilm.title}</h1>
-              <p className="post-excerpt">{currentFilm.description}</p>
+              <p className="post-excerpt is-size-5">{currentFilm.description}</p>
               {/* <button type="button" className="button is-primary">
                 edit
               </button>
