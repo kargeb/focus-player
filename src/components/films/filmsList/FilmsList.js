@@ -11,6 +11,7 @@ const FilmsList = ({ films, columns = 3 }) => (
             url={item.video_url}
             id={item.id}
             timestamp={item.timestamp}
+            watched={item.watched}
           />
         </li>
       ))}

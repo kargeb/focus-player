@@ -1,20 +1,21 @@
 import { Link } from 'react-router-dom';
 import createThumbnail from '../../../../helpers/createThumbnail';
 
-const FilmItem = ({ description, title, url, id, timestamp }) => (
+const FilmItem = ({ description, title, url, id, timestamp, watched }) => (
   <Link as="div" to={`/films/${id}`}>
     <div className="card overflow">
       <div className="card-image watched-container ">
-        {/* <div className="has-text-right"> */}
-        <div className="has-text-right icon-text has-background-grey-dark has-text-primary watched">
-          <span className="icon">
-            <i className="fas fa-check-square" />
-          </span>
-          &nbsp;
-          <span>Watched</span>
-        </div>
-        {/* </div> */}
-        <figure className="image ">
+        {watched && (
+          <div className="has-text-right icon-text has-background-grey-dark has-text-primary watched">
+            <span className="icon">
+              <i className="fas fa-check-square" />
+            </span>
+            &nbsp;
+            <span>Watched</span>
+          </div>
+        )}
+
+        <figure className={`image ${watched && '_opacity'} `}>
           <img src={createThumbnail(url)} alt="Video thumbnail" />
         </figure>
       </div>

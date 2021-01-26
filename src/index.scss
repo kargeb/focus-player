@@ -121,6 +121,18 @@ html {
   padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
 }
 
-._watched-wrapper {
-  width: 100px;
+._opacity {
+  position: relative;
+
+  &:after {
+    content: '' '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    // border-radius: 12px;
+    background-color: black;
+  }
 }
