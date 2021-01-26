@@ -12,15 +12,25 @@ const FilmContainer = () => {
   return (
     <div className="container">
       <div className="column is-12 post">
-        <article className="columns featured">
+        <article className="columns featured is-multiline">
           {/* <div className="column is-7 post-img "> */}
-          <div className="column is-6 is-offset-1 ">
-            <ReactPlayer url={currentFilm.video_url} controls />
+          {/* <div className="column  "> */}
+          <div className="column is-6-widescreen is-offset-1-widescreen is-10-tablet is-offset-1-tablet ">
+            <div className="player-wrapper">
+              <ReactPlayer
+                className="react-player"
+                url={currentFilm.video_url}
+                controls
+                width="100%"
+                // height="100%"
+              />
+            </div>
 
             {/* <img src="https://cdn.emk.dev/templates/featured-image.png" alt="" /> */}
           </div>
 
-          <div className="column is-5 featured-content va">
+          {/* <div className="column  featured-content va"> */}
+          <div className="column is-4-widescreen is-offset-1-widescreen is-8-tablet is-offset-2-tablet featured-content va">
             <div>
               {/* <h3 className="heading post-category">Category Name</h3> */}
               <h1 className="title post-title">{currentFilm.title}</h1>

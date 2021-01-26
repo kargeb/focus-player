@@ -18,14 +18,14 @@ const FilmItem = ({ description, title, url, id, timestamp }) => (
           <img src={createThumbnail(url)} alt="Video thumbnail" />
         </figure>
       </div>
-      <div className="card-content">
+      <div className="card-content p-4">
         <div className="media">
           <div className="media-content">
-            <p className="title is-4 _title">{title}</p>
+            <p className="title is-4 is-size-5-tablet _title">{title}</p>
           </div>
         </div>
 
-        <div className="content ">
+        <div className="content mt-0">
           <p className="_description">{description}</p>
 
           <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
