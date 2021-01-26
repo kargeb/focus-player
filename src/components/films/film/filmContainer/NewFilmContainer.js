@@ -17,8 +17,6 @@ const FilmContainer = () => {
     <div className="container">
       <div className="column is-12 post">
         <article className="columns featured is-multiline">
-          {/* <div className="column is-7 post-img "> */}
-          {/* <div className="column  "> */}
           <div className="column is-6-widescreen is-offset-1-widescreen is-10-tablet is-offset-1-tablet ">
             <div className="player-wrapper">
               <ReactPlayer
@@ -29,12 +27,9 @@ const FilmContainer = () => {
                 height="100%"
               />
             </div>
-
-            {/* <img src="https://cdn.emk.dev/templates/featured-image.png" alt="" /> */}
           </div>
 
-          {/* <div className="column  featured-content va"> */}
-          <div className="column is-4-widescreen is-offset-0-widescreen is-8-tablet is-offset-2-tablet featured-content va">
+          <div className="column is-4-widescreen is-offset-0-widescreen is-8-tablet is-offset-2-tablet featured-content">
             <div>
               <div className="is-flex is-justify-content-space-between is-align-items-center">
                 <a
@@ -54,12 +49,6 @@ const FilmContainer = () => {
                   </span>
                   <span>watched</span>
                 </a>
-                {/* <span className="icon-text is-size-4 has-text-primary is-flex is-align-items-center">
-                  <span className="icon is-medium">
-                    <i className="far fa-square fa-lg" />
-                  </span>
-                  <span>Watched</span>
-                </span> */}
 
                 <div>
                   <button
