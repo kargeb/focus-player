@@ -7,7 +7,7 @@ const Films = () => {
 
   return (
     // <section className="hero is-light">
-    <section className="hero ">
+    <section className="hero blog-posts">
       <div className="hero-body">
         <div className="container">
           <h2 className="title is-2 has-text-centered is-uppercase mb-6">films</h2>
