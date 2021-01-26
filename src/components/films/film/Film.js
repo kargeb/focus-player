@@ -15,6 +15,7 @@ const Film = () => {
   const isLoading = useSelector((state) => state.filmsReducer.isLoading);
 
   return (
+    // <section className="back">
     <section className="section">
       {/* prettier-ignore */}
       <div className="container">
@@ -30,6 +31,7 @@ const Film = () => {
         )}
       </div>
     </section>
+    // </section>
   );
 };
 

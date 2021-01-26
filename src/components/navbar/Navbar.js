@@ -14,7 +14,7 @@ const Navbar = () => {
     <nav className="navbar  py-3 is-dark" role="navigation" aria-label="main navigation">
       <div className="container">
         <div className="navbar-brand">
-          <Link className="custom_main-logo" to="/">
+          <Link className="custom_main-logo navbar-item" to="/">
             <img src={logo} alt="main logo" />
           </Link>
           <a
