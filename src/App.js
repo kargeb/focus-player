@@ -22,7 +22,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          <Dashboard />
+          <Films />
         </Route>
         <Route exact path="/films">
           <Films />
@@ -33,9 +33,9 @@ function App() {
         <Route path="/add-film">
           <AddFilm />
         </Route>
-        <Route path="/playlists">
+        {/* <Route path="/playlists">
           <Playlists />
-        </Route>
+        </Route> */}
       </Switch>
     </Router>
   );

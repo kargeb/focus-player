@@ -67,11 +67,11 @@ const AddFilm = () => {
                     <div className="field mb-4">
                       <label className="label" htmlFor="video_url">
                         Url
-                        <div className="control has-icons-left">
+                        <div className="control has-icons-left ">
                           <input
                             id="video_url"
                             name="video_url"
-                            className="input"
+                            className="input _input"
                             type="text"
                             placeholder="Video address"
                             onChange={handleChange}
@@ -93,7 +93,7 @@ const AddFilm = () => {
                         <div className="control has-icons-left">
                           <input
                             id="title"
-                            className="input"
+                            className="input _input"
                             type="text"
                             placeholder="title"
                             onChange={handleChange}
@@ -116,7 +116,7 @@ const AddFilm = () => {
                         <div className="control has-icons-left">
                           <input
                             id="description"
-                            className="input"
+                            className="input _input"
                             type="text"
                             placeholder="At least 10 characters ..."
                             onChange={handleChange}
