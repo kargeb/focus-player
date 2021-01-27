@@ -237,17 +237,16 @@ html {
   }
 }
 
-.is-active {
-  color: #e4e2ff;
-  font-weight: 700;
-}
-
 ._dark-back {
   background: #060606;
 }
 
 ._input {
   background-color: #dbdbdb;
+
+  &::placeholder {
+    color: #363636;
+  }
 }
 
 // LOADER
@@ -335,3 +334,27 @@ html {
     transform: rotate(360deg);
   }
 }
+
+._menu-button:hover {
+  background-color: black;
+  padding: 10px;
+}
+
+.is-active {
+  color: #e4e2ff;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+}
+
+._label {
+  color: #e4e2ff;
+}
+
+._text-dark {
+  color: #191b1f;
+}
+
+// ._placeholder::placeholder {
+//   color: #363636;
+// }

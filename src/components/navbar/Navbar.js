@@ -46,10 +46,10 @@ const Navbar = () => {
             </NavLink>
           </div> */}
           <div className="navbar-end">
-            <div className="navbar-item">
+            <div className="navbar-item ">
               <NavLink
                 activeClassName="is-active"
-                className="navbar-item px-5 ml-4 is-size-5 "
+                className="navbar-itemm _menu-button px-5 ml-4 is-size-5 "
                 exact
                 to="/films"
               >

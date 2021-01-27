@@ -111,7 +111,7 @@ const FilmContainer = () => {
               </div>
               <br />
               <h1 className="title post-title">{currentFilm.title}</h1>
-              <p className="post-excerpt is-size-5">{currentFilm.description}</p>
+              <p className="post-excerpt is-size-5 _description">{currentFilm.description}</p>
               {/* <button type="button" className="button is-primary">
                 edit
               </button>

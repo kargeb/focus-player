@@ -19,7 +19,7 @@ const FilmItem = ({ description, title, url, id, timestamp, watched }) => (
           <img src={createThumbnail(url)} alt="Video thumbnail" />
         </figure>
       </div>
-      <div className="card-content p-4 _dark-back">
+      <div className="card-content p-5 _dark-back">
         <div className="media">
           <div className="media-content">
             <p className="title is-4 is-size-5-tablet _title">{title}</p>
