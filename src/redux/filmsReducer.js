@@ -144,6 +144,7 @@ const INITIAL_STATE = {
   isError: false,
   addFilmLoading: false,
   currentFilm: null,
+  isEdited: false,
 };
 
 export const filmsReducer = (state = INITIAL_STATE, action) => {
@@ -188,6 +189,7 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
     case EDIT_FILM_REQUESTED:
       return {
         ...state,
+        isEdited: true,
       };
     case EDIT_FILM_SUCCEEDED: {
       const filmsWithoutEditedOne = state.films.filter((film) => film.id !== action.payload.id);
@@ -195,6 +197,7 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         currentFilm: { ...action.payload },
         films: [...filmsWithoutEditedOne, { ...action.payload }],
+        isEdited: false,
       };
     }
     case EDIT_FILM_FAILED:

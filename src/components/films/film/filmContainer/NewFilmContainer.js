@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import ReactPlayer from 'react-player/youtube';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editFilm } from '../../../../redux/filmsReducer';
 import DeleteFilmModal from './deleteFilmModal/DeleteFilmModal';
@@ -12,8 +12,10 @@ import WatchedCheckBox from './WatchedCheckBox';
 
 const FilmContainer = () => {
   const { currentFilm } = useSelector((state) => state.filmsReducer);
+  const { isEdited } = useSelector((state) => state.filmsReducer);
   const dispatch = useDispatch();
   const [isWatched, setWatched] = useState(currentFilm.watched);
+  const [waitingForServer, setWaitingForServer] = useState(false);
 
   const handleCheckbox = (e) => {
     console.log('CURENT FILM:', currentFilm);
@@ -36,6 +38,9 @@ const FilmContainer = () => {
     // }, 2000);
   };
 
+  console.log('CUURENT FILM Z CONSOLE.LOG(:)', currentFilm);
+  console.log('USE CELECTOR ZE STANEM FILMU:', isEdited);
+
   return (
     <div className="container">
       <div className="column is-12 post">
@@ -55,23 +60,33 @@ const FilmContainer = () => {
           <div className="column is-4-widescreen is-offset-0-widescreen is-8-tablet is-offset-2-tablet featured-content">
             <div>
               <div className="is-flex is-justify-content-space-between is-align-items-center">
-                <a
-                  className="button is-primary is-size-4 is-outlined _without-border is-medium is-flex is-align-items-center"
-                  onClick={() => handleCheckbox()}
-                >
-                  <span className="icon">
-                    {isWatched ? (
-                      <p>
-                        <i className="fas fa-check-square fa-lg" />
-                      </p>
-                    ) : (
-                      <span>
-                        <i className="far fa-square fa-lg" />
-                      </span>
-                    )}
-                  </span>
-                  <span>watched</span>
-                </a>
+                {isEdited ? (
+                  <button
+                    type="button"
+                    disabled
+                    className="button is-loading is-primary is-size-4 is-medium _loading-button"
+                  >
+                    Loading
+                  </button>
+                ) : (
+                  <a
+                    className="button is-primary is-size-4 is-outlined _without-border is-medium is-flex is-align-items-center"
+                    onClick={() => handleCheckbox()}
+                  >
+                    <span className="icon">
+                      {isWatched ? (
+                        <p>
+                          <i className="fas fa-check-square fa-lg" />
+                        </p>
+                      ) : (
+                        <span>
+                          <i className="far fa-square fa-lg" />
+                        </span>
+                      )}
+                    </span>
+                    <span>watched</span>
+                  </a>
+                )}
 
                 <div>
                   <button
