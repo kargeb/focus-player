@@ -3,7 +3,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import ReactPlayer from 'react-player/youtube';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { editFilm } from '../../../../redux/filmsReducer';
 import DeleteFilmModal from './deleteFilmModal/DeleteFilmModal';
 import ButtonsContainer from './ButtonsContainer/ButtonsContainer';
 import DescriptionContainer from './DescriptionContainer/DescriptionContainer';
@@ -11,7 +12,29 @@ import WatchedCheckBox from './WatchedCheckBox';
 
 const FilmContainer = () => {
   const { currentFilm } = useSelector((state) => state.filmsReducer);
-  const [isWatched, setWatched] = useState(false);
+  const dispatch = useDispatch();
+  const [isWatched, setWatched] = useState(currentFilm.watched);
+
+  const handleCheckbox = (e) => {
+    console.log('CURENT FILM:', currentFilm);
+    console.log('isCHECKED: ', isWatched);
+    const editedFilm = {
+      ...currentFilm,
+      watched: !isWatched,
+    };
+
+    // dispatch(toggleEditFilmMode());
+
+    console.log('editedFILM:', editedFilm);
+    dispatch(editFilm(editedFilm));
+
+    setWatched(editedFilm.watched);
+    console.log('e.target.checked:', e);
+    // setDisability(true);
+    // setTimeout(() => {
+    //   setDisability(false);
+    // }, 2000);
+  };
 
   return (
     <div className="container">
@@ -34,7 +57,7 @@ const FilmContainer = () => {
               <div className="is-flex is-justify-content-space-between is-align-items-center">
                 <a
                   className="button is-primary is-size-4 is-outlined _without-border is-medium is-flex is-align-items-center"
-                  onClick={() => setWatched(!isWatched)}
+                  onClick={() => handleCheckbox()}
                 >
                   <span className="icon">
                     {isWatched ? (
