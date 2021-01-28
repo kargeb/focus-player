@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { fetchFilms } from './redux/filmsReducer';
@@ -21,6 +21,7 @@ function App() {
     <Router>
       <Navbar />
       <Switch>
+        <Redirect exact from="/" to="/films" />
         <Route exact path="/">
           <Films />
         </Route>
@@ -33,6 +34,7 @@ function App() {
         <Route path="/add-film">
           <AddFilm />
         </Route>
+        <Redirect to="/films" />
         {/* <Route path="/playlists">
           <Playlists />
         </Route> */}
