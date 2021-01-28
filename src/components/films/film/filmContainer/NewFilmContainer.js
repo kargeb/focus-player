@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editFilm } from '../../../../redux/filmsReducer';
 import TextContent from './textContent/TextContent';
 import EditingTextContent from './textContent/EditingTextContent';
+import DeleteFilmModal from './deleteFilmModal/DeleteFilmModal';
 
 const FilmContainer = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const FilmContainer = () => {
 
   const [isWatched, setWatched] = useState(currentFilm.watched);
   const [editMode, setEditMode] = useState(false);
+  const [isDeleteModalVisible, setDeleteModalVisibility] = useState(false);
 
   const handleCheckbox = () => {
     const editedFilm = {
@@ -91,6 +93,7 @@ const FilmContainer = () => {
                     type="button"
                     className="button is-primary _without-border is-outlined"
                     // onClick={() => dispatch(toggleEditFilmMode())}
+                    onClick={() => setDeleteModalVisibility(true)}
                   >
                     <span className="icon  is-medium px-5">
                       <i className="fas fa-trash-alt fa-lg" />
@@ -104,6 +107,9 @@ const FilmContainer = () => {
           </div>
         </article>
       </div>
+      {isDeleteModalVisible && (
+        <DeleteFilmModal setDeleteModalVisibility={setDeleteModalVisibility} />
+      )}
     </div>
   );
 };
