@@ -9,37 +9,26 @@ import DeleteFilmModal from './deleteFilmModal/DeleteFilmModal';
 import ButtonsContainer from './ButtonsContainer/ButtonsContainer';
 import DescriptionContainer from './DescriptionContainer/DescriptionContainer';
 import WatchedCheckBox from './WatchedCheckBox';
+import TextContent from './textContent/TextContent';
+import EditingTextContent from './textContent/EditingTextContent';
 
 const FilmContainer = () => {
+  const dispatch = useDispatch();
   const { currentFilm } = useSelector((state) => state.filmsReducer);
   const { isEdited } = useSelector((state) => state.filmsReducer);
-  const dispatch = useDispatch();
-  const [isWatched, setWatched] = useState(currentFilm.watched);
-  const [waitingForServer, setWaitingForServer] = useState(false);
 
-  const handleCheckbox = (e) => {
-    console.log('CURENT FILM:', currentFilm);
-    console.log('isCHECKED: ', isWatched);
+  const [isWatched, setWatched] = useState(currentFilm.watched);
+  const [editMode, setEditMode] = useState(false);
+
+  const handleCheckbox = () => {
     const editedFilm = {
       ...currentFilm,
       watched: !isWatched,
     };
-
-    // dispatch(toggleEditFilmMode());
-
-    console.log('editedFILM:', editedFilm);
     dispatch(editFilm(editedFilm));
 
     setWatched(editedFilm.watched);
-    console.log('e.target.checked:', e);
-    // setDisability(true);
-    // setTimeout(() => {
-    //   setDisability(false);
-    // }, 2000);
   };
-
-  console.log('CUURENT FILM Z CONSOLE.LOG(:)', currentFilm);
-  console.log('USE CELECTOR ZE STANEM FILMU:', isEdited);
 
   return (
     <div className="container">
@@ -93,6 +82,7 @@ const FilmContainer = () => {
                     type="button"
                     className="button  is-primary _without-border is-outlined mr-4"
                     // onClick={() => dispatch(toggleEditFilmMode())}
+                    onClick={() => setEditMode(!editMode)}
                   >
                     <span className="icon is-medium px-5">
                       <i className="fas fa-edit fa-lg" />
@@ -110,14 +100,7 @@ const FilmContainer = () => {
                 </div>
               </div>
               <br />
-              <h1 className="title post-title">{currentFilm.title}</h1>
-              <p className="post-excerpt is-size-5 _description">{currentFilm.description}</p>
-              {/* <button type="button" className="button is-primary">
-                edit
-              </button>
-              <button type="button" className="button is-primary">
-                remove
-              </button> */}
+              {editMode ? <EditingTextContent setEditMode={setEditMode} /> : <TextContent />}
             </div>
           </div>
         </article>
