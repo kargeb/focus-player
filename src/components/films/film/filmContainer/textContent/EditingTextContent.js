@@ -92,7 +92,7 @@ const EditingTextContent = ({ setEditMode }) => {
               <button
                 type="button"
                 className="button is-light is-outlined"
-                onClick={() => dispatch(toggleEditFilmMode())}
+                onClick={() => setEditMode(false)}
               >
                 Discard
               </button>

@@ -2,13 +2,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import ReactPlayer from 'react-player/youtube';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { editFilm } from '../../../../redux/filmsReducer';
-import DeleteFilmModal from './deleteFilmModal/DeleteFilmModal';
-import ButtonsContainer from './ButtonsContainer/ButtonsContainer';
-import DescriptionContainer from './DescriptionContainer/DescriptionContainer';
-import WatchedCheckBox from './WatchedCheckBox';
 import TextContent from './textContent/TextContent';
 import EditingTextContent from './textContent/EditingTextContent';
 
@@ -78,16 +75,18 @@ const FilmContainer = () => {
                 )}
 
                 <div>
-                  <button
+                  <a
                     type="button"
-                    className="button  is-primary _without-border is-outlined mr-4"
+                    className={`button  is-primary _without-border ${
+                      !editMode && 'is-outlined'
+                    }  mr-4`}
                     // onClick={() => dispatch(toggleEditFilmMode())}
                     onClick={() => setEditMode(!editMode)}
                   >
                     <span className="icon is-medium px-5">
                       <i className="fas fa-edit fa-lg" />
                     </span>
-                  </button>
+                  </a>
                   <a
                     type="button"
                     className="button is-primary _without-border is-outlined"
