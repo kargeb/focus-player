@@ -14,7 +14,7 @@ const Navbar = () => {
     <nav className="navbar  py-3 is-dark" role="navigation" aria-label="main navigation">
       <div className="container">
         <div className="navbar-brand">
-          <Link className="custom_main-logo" to="/">
+          <Link className="custom_main-logo navbar-item" to="/">
             <img src={logo} alt="main logo" />
           </Link>
           <a
@@ -33,17 +33,29 @@ const Navbar = () => {
         </div>
 
         <div id="navbarBasicExample" className={`navbar-menu ${isActive}`}>
-          <div className="navbar-start">
+          {/* <div className="navbar-end"> */}
+
+          {/* <div className="navbar-start">
             <NavLink
               activeClassName="is-active"
               className="navbar-item px-5 ml-4 is-size-5"
               exact
-              to="/films"
+              to="/playlists"
             >
-              Films
+              Playlists
             </NavLink>
-          </div>
+          </div> */}
           <div className="navbar-end">
+            <div className="navbar-item ">
+              <NavLink
+                activeClassName="is-active"
+                className="navbar-itemm _menu-button px-5 ml-4 is-size-5 "
+                exact
+                to="/films"
+              >
+                Films
+              </NavLink>
+            </div>
             <div className="navbar-item">
               <div className="buttons">
                 <NavLink activeClassName="is-active" className="button is-primary" to="/add-film">
