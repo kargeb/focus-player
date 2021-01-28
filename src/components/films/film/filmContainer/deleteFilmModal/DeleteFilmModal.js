@@ -1,6 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { toggleDeleteFilmModal } from '../../../../../redux/editFilmReducer';
 import { deleteFilm } from '../../../../../redux/filmsReducer';
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -9,17 +8,14 @@ const DeleteFilmModal = ({ setDeleteModalVisibility }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
-  const { isDeleteModalOpen } = useSelector((state) => state.editFilmReducer);
 
   const handleDelete = () => {
     dispatch(deleteFilm(id));
-    // dispatch(toggleDeleteFilmModal());
     history.push('/films');
     setDeleteModalVisibility(false);
   };
 
   return (
-    // <div className={`modal ${isDeleteModalOpen && `is-active`}`}>
     <div className="modal  is-active">
       <div className="modal-background" onClick={() => setDeleteModalVisibility(false)} />
       <div className="modal-content">

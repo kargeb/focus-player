@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { editFilm } from '../../../../../redux/filmsReducer';
-import { toggleEditFilmMode } from '../../../../../redux/editFilmReducer';
 
 const EditingTextContent = ({ setEditMode }) => {
   const dispatch = useDispatch();
@@ -11,11 +10,9 @@ const EditingTextContent = ({ setEditMode }) => {
     const editedFilm = {
       ...currentFilm,
       title: values.title,
-      //   watched: true,
       description: values.description,
     };
     dispatch(editFilm(editedFilm));
-    // dispatch(toggleEditFilmMode());
     setEditMode(false);
   };
 
