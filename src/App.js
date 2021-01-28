@@ -8,6 +8,7 @@ import Navbar from './components/navbar/Navbar';
 import Films from './components/films/Films';
 import Film from './components/films/film/Film';
 import AddFilm from './components/addFilm/AddFilm';
+import Playlists from './components/playlists/Playlists';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          <Dashboard />
+          <Films />
         </Route>
         <Route exact path="/films">
           <Films />
@@ -32,6 +33,9 @@ function App() {
         <Route path="/add-film">
           <AddFilm />
         </Route>
+        {/* <Route path="/playlists">
+          <Playlists />
+        </Route> */}
       </Switch>
     </Router>
   );

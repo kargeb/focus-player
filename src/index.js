@@ -6,9 +6,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bulma';
 import './index.scss';
+import Testing from './Testing';
 
 ReactDOM.render(
   <React.StrictMode>
+    {/* <Testing /> */}
     <Provider store={store}>
       <App />
     </Provider>

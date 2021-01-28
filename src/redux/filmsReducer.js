@@ -1,3 +1,7 @@
+// const API_URL = 'https://agile-depths-96654.herokuapp.com';
+
+const API_URL = 'http://localhost:3333';
+
 const ADD_FILM_REQUESTED = 'ADD_FILM_REQUESTED';
 const ADD_FILM_SUCCEEDED = 'ADD_FILM_SUCCEEDED';
 const ADD_FILM_FAILED = 'ADD_FILM_FAILED';
@@ -15,6 +19,13 @@ const EDIT_FILM_SUCCEEDED = 'EDIT_FILM_SUCCEEDED';
 const EDIT_FILM_FAILED = 'EDIT_FILM_FAILED';
 
 const SELECT_CURRENT_FILM = 'SELECT_CURRENT_FILM';
+
+const HANDLE_WATCHED_FILM_CHECKBOX = 'HANDLE_WATCHED_FILM_CHECKBOX';
+
+export const handleWatchedFilmCheckbox = (isWatched) => ({
+  type: HANDLE_WATCHED_FILM_CHECKBOX,
+  payload: isWatched,
+});
 
 export const selectCurrentFilm = (id) => ({
   type: SELECT_CURRENT_FILM,
@@ -49,11 +60,12 @@ export const deleteFilmFailed = (err) => ({ type: DELETE_FILM_FAILED, payload: e
 export const editFilm = (editedFilm) => {
   return (dispatch) => {
     dispatch(editFilmRequested(editedFilm));
-    const editedEndpoint = `https://agile-depths-96654.herokuapp.com/v1/movies/${editedFilm.id}`;
+    const editedEndpoint = `${API_URL}/v1/movies/${editedFilm.id}`;
     const editedFilmWithoutId = {
       title: editedFilm.title,
       description: editedFilm.description,
       video_url: editedFilm.video_url,
+      watched: editedFilm.watched,
     };
 
     fetch(editedEndpoint, {
@@ -76,7 +88,7 @@ export const editFilm = (editedFilm) => {
 export const deleteFilm = (selectedFilm) => {
   return (dispatch) => {
     dispatch(deleteFilmRequested());
-    fetch(`https://agile-depths-96654.herokuapp.com/v1/movies/${selectedFilm}`, {
+    fetch(`${API_URL}/v1/movies/${selectedFilm}`, {
       method: 'DELETE',
     })
       .then((response) => response)
@@ -88,7 +100,7 @@ export const deleteFilm = (selectedFilm) => {
 export const addFilm = (newFilm) => {
   return (dispatch) => {
     dispatch(addFilmRequested());
-    fetch('https://agile-depths-96654.herokuapp.com/v1/movies', {
+    fetch(`${API_URL}/v1/movies`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -104,7 +116,7 @@ export const addFilm = (newFilm) => {
 export const fetchFilms = () => {
   return (dispatch) => {
     dispatch(fetchRequested());
-    fetch('https://agile-depths-96654.herokuapp.com/v1/movies')
+    fetch(`${API_URL}/v1/movies`)
       .then((response) => response.json())
       .then((data) => {
         dispatch(fetchSucceeded(data));
@@ -113,6 +125,18 @@ export const fetchFilms = () => {
   };
 };
 
+// export const toggleFilmWatched = () => {
+//   return (dispatch) => {
+//     dispatch(fetchRequested());
+//     fetch(`${API_URL}/v1/movies`)
+//       .then((response) => response.json())
+//       .then((data) => {
+//         dispatch(fetchSucceeded(data));
+//       })
+//       .catch(() => dispatch(fetchFailed()));
+//   };
+// };
+
 const INITIAL_STATE = {
   films: [],
   testValue: 23,
@@ -120,6 +144,7 @@ const INITIAL_STATE = {
   isError: false,
   addFilmLoading: false,
   currentFilm: null,
+  isEdited: false,
 };
 
 export const filmsReducer = (state = INITIAL_STATE, action) => {
@@ -131,6 +156,7 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
         isError: false,
       };
     case FETCH_FILMS_FAILED:
+      console.log('FETCH_FILMS_FAILED');
       return {
         ...state,
         isLoading: false,
@@ -155,6 +181,7 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
         addFilmLoading: false,
       };
     case ADD_FILM_FAILED:
+      console.log('ADD_FILM_FAILED');
       return {
         ...state,
         addFilmLoading: false,
@@ -162,6 +189,7 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
     case EDIT_FILM_REQUESTED:
       return {
         ...state,
+        isEdited: true,
       };
     case EDIT_FILM_SUCCEEDED: {
       const filmsWithoutEditedOne = state.films.filter((film) => film.id !== action.payload.id);
@@ -169,9 +197,11 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         currentFilm: { ...action.payload },
         films: [...filmsWithoutEditedOne, { ...action.payload }],
+        isEdited: false,
       };
     }
     case EDIT_FILM_FAILED:
+      console.log('EDITED FILM FAILED');
       return {
         ...state,
       };
@@ -191,6 +221,12 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentFilm,
+      };
+    }
+    case HANDLE_WATCHED_FILM_CHECKBOX: {
+      const isWatched = action.payload;
+      return {
+        ...state,
       };
     }
     default:

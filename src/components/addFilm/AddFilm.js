@@ -50,20 +50,28 @@ const AddFilm = () => {
                   return errors;
                 }}
                 onSubmit={(values, { resetForm }) => {
-                  runDispatch(values);
+                  const dateNow = new Date().getTime();
+                  console.log('to jest timspatnmp:', dateNow);
+                  console.log('TERAZ DATA JEST z niego:', new Date(dateNow));
+                  const newVales = { ...values, watched: false, timestamp: dateNow };
+                  // console.log('values z add film', values);
+                  // values[watched] = true;
+                  // console.log('values z watched add film', newVales);
+
+                  runDispatch(newVales);
                   resetForm();
                 }}
               >
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
                   <form onSubmit={handleSubmit}>
                     <div className="field mb-4">
-                      <label className="label" htmlFor="video_url">
+                      <label className="label _label" htmlFor="video_url">
                         Url
-                        <div className="control has-icons-left">
+                        <div className="control has-icons-left ">
                           <input
                             id="video_url"
                             name="video_url"
-                            className="input"
+                            className="input _input "
                             type="text"
                             placeholder="Video address"
                             onChange={handleChange}
@@ -71,7 +79,7 @@ const AddFilm = () => {
                             value={values.video_url}
                           />
                           <span className="icon is-small is-left">
-                            <i className="fas fa-link" />
+                            <i className="fas _text-dark fa-link" />
                           </span>
                         </div>
                       </label>
@@ -80,12 +88,12 @@ const AddFilm = () => {
                       )}
                     </div>
                     <div className="field mb-4">
-                      <label className="label" htmlFor="title">
+                      <label className="label _label" htmlFor="title">
                         Title
                         <div className="control has-icons-left">
                           <input
                             id="title"
-                            className="input"
+                            className="input _input"
                             type="text"
                             placeholder="title"
                             onChange={handleChange}
@@ -93,7 +101,7 @@ const AddFilm = () => {
                             value={values.title}
                           />
                           <span className="icon is-small is-left">
-                            <i className="fas fa-heading" />
+                            <i className="fas _text-dark fa-heading" />
                           </span>
                         </div>
                       </label>
@@ -103,12 +111,12 @@ const AddFilm = () => {
                     </div>
 
                     <div className="field mb-4">
-                      <label className="label" htmlFor="description">
+                      <label className="label _label" htmlFor="description">
                         Description
                         <div className="control has-icons-left">
                           <input
                             id="description"
-                            className="input"
+                            className="input _input"
                             type="text"
                             placeholder="At least 10 characters ..."
                             onChange={handleChange}
@@ -116,7 +124,7 @@ const AddFilm = () => {
                             value={values.description}
                           />
                           <span className="icon is-small is-left">
-                            <i className="fas fa-align-justify" />
+                            <i className="fas _text-dark fa-align-justify" />
                           </span>
                         </div>
                       </label>
@@ -139,7 +147,7 @@ const AddFilm = () => {
                       <div className="control">
                         <button
                           type="button"
-                          className="button is-dark is-outlined"
+                          className="button is-light is-outlined"
                           onClick={() => history.goBack()}
                         >
                           Back
