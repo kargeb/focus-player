@@ -2,6 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFilm, filmsReducer } from '../../redux/filmsReducer';
+import AddFilmModal from './addFilmModal/AddFilmModal';
 
 const AddFilm = () => {
   const history = useHistory();
@@ -14,6 +15,7 @@ const AddFilm = () => {
 
   return (
     <div>
+      <AddFilmModal />
       <section className="section">
         <div className="container">
           <div className="columns">

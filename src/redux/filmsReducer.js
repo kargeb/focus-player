@@ -1,6 +1,6 @@
-const API_URL = 'https://agile-depths-96654.herokuapp.com';
+// const API_URL = 'https://agile-depths-96654.herokuapp.com';
 
-// const API_URL = 'http://localhost:3333';
+const API_URL = 'http://localhost:3333';
 
 const ADD_FILM_REQUESTED = 'ADD_FILM_REQUESTED';
 const ADD_FILM_SUCCEEDED = 'ADD_FILM_SUCCEEDED';
