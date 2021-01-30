@@ -7,7 +7,7 @@ import AddFilmModal from './addFilmModal/AddFilmModal';
 const AddFilm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { addFilmLoading } = useSelector((state) => state.filmsReducer);
+  const { addFilmLoading, isAddedFilmModalVisible } = useSelector((state) => state.filmsReducer);
 
   const runDispatch = (newFilm) => {
     dispatch(addFilm(newFilm));
@@ -15,7 +15,7 @@ const AddFilm = () => {
 
   return (
     <div>
-      <AddFilmModal />
+      {isAddedFilmModalVisible && <AddFilmModal />}
       <section className="section">
         <div className="container">
           <div className="columns">

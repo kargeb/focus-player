@@ -145,6 +145,7 @@ const INITIAL_STATE = {
   addFilmLoading: false,
   currentFilm: null,
   isEdited: false,
+  isAddedFilmModalVisible: false,
 };
 
 export const filmsReducer = (state = INITIAL_STATE, action) => {
@@ -177,8 +178,10 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
     case ADD_FILM_SUCCEEDED:
       return {
         ...state,
+        currentFilm: { ...action.payload },
         films: [...state.films, { ...action.payload }],
         addFilmLoading: false,
+        isAddedFilmModalVisible: true,
       };
     case ADD_FILM_FAILED:
       console.log('ADD_FILM_FAILED');
