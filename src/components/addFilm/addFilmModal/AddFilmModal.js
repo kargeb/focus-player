@@ -17,11 +17,11 @@ const AddFilmModal = () => {
               </p>
             </figure>
             <div className="media-content">
-              <div className="content">
+              <div className="content has-text-light">
                 <p>
-                  <strong className="content has-text-primary">John Smith</strong>
+                  <strong className="content has-text-light">John Smith</strong>
                   <br />
-                  Lorem ipsum dolor ...
+                  <span className="has-text-weight-light">Lorem ipsum dolor ...</span>
                 </p>
               </div>
             </div>
