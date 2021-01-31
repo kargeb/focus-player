@@ -14,7 +14,7 @@ const AddFilmModal = () => {
           <h4 className="title is-5 has-text-centered mb-5">What do you want to do now?</h4>
           <div className="buttons is-flex-direction-column _added-film-buttons-container is-align-items-flex-start">
             <a
-              className="button is-primary is-size-4 is-outlined _without-border is-medium is-flex is-align-items-center"
+              className="button  is-primary is-outlined is-flex is-justify-content-start is-fullwidth mb-4"
               onClick={() => {}}
             >
               <span className="icon">
@@ -22,12 +22,10 @@ const AddFilmModal = () => {
                   <i className="fas fa-plus fa-lg" />
                 </span>
               </span>
-              <span className="ml-4 is-size-5 has-text-white has-text-weight-normal">
-                Add another film
-              </span>
+              <span className="ml-4 is-size-6 has-text-white ">Add another film</span>
             </a>
             <a
-              className="button is-primary is-size-4 is-outlined _without-border is-medium is-flex is-align-items-center"
+              className="button is-primary is-outlined is-flex is-justify-content-start is-fullwidth mb-4"
               onClick={() => {}}
             >
               <span className="icon">
@@ -35,33 +33,20 @@ const AddFilmModal = () => {
                   <i className="fas fa-play fa-lg" />
                 </span>
               </span>
-              <span className="ml-4 is-size-5 has-text-white has-text-weight-normal">
-                Watch last added film
-              </span>
+              <span className="ml-4 is-size-6 has-text-white ">Watch last added film</span>
             </a>
             <a
-              className="button is-primary is-size-4 is-outlined _without-border is-medium is-flex is-align-items-center"
+              className="button is-primary is-outlined is-flex is-justify-content-start is-fullwidth "
               onClick={() => {}}
             >
-              <span className="icon">
+              <span className=" icon">
                 <span>
-                  <i className="fas fa-th fa-lg" />
+                  <i className=" fas fa-th fa-lg" />
                 </span>
               </span>
-              <span className="ml-4 is-size-5 has-text-white has-text-weight-normal">
-                Go back to library
-              </span>
+              <span className="ml-4 is-size-6 has-text-white  ">Go back to library</span>
             </a>
           </div>
-
-          {/* <div className="buttons is-centered">
-            <button type="button" className="button is-light is-outlined mr-4" onClick={() => {}}>
-              No
-            </button>
-            <button type="button" className="button is-primary is-outlined ml-4" onClick={() => {}}>
-              Yes
-            </button>
-          </div> */}
         </div>
       </div>
       <button
