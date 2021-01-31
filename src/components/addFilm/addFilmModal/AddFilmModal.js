@@ -9,8 +9,23 @@ const AddFilmModal = () => {
       <div className="modal-background" onClick={() => {}} />
       <div className="modal-content">
         <div className="box has-background-dark py-6">
-          <h4 className="title post-title has-text-centered mb-6">Added successfully!</h4>
-
+          <h4 className="title is-size-3 post-title has-text-centered mb-3">Added successfully</h4>
+          <div className="media _added-film-container my-6">
+            <figure className="media-left">
+              <p className="image is-64x64">
+                <img alt="thumbnail" src="https://bulma.io/images/placeholders/128x128.png" />
+              </p>
+            </figure>
+            <div className="media-content">
+              <div className="content">
+                <p>
+                  <strong className="content has-text-primary">John Smith</strong>
+                  <br />
+                  Lorem ipsum dolor ...
+                </p>
+              </div>
+            </div>
+          </div>
           <h4 className="title is-5 has-text-centered mb-5">What do you want to do now?</h4>
           <div className="buttons is-flex-direction-column _added-film-buttons-container is-align-items-flex-start">
             <a
