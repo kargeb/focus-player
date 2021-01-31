@@ -15,8 +15,8 @@ const AddFilm = () => {
 
   return (
     <div>
-      {/* {isAddedFilmModalVisible && <AddFilmModal />} */}
-      <AddFilmModal />
+      {isAddedFilmModalVisible && <AddFilmModal />}
+      {/* <AddFilmModal /> */}
       <section className="section">
         <div className="container">
           <div className="columns">

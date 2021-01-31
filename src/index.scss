@@ -365,12 +365,14 @@ html {
   margin: 0 auto;
   padding: 15px 15px;
   border-radius: 4px;
-  // box-sizing: border-box;
   border: 1px solid transparent;
 
   &:hover {
     border: 1px solid white;
     cursor: pointer;
-    // box-shadow: 0 8px 6px -6px white;
   }
+}
+
+._img-added-film-modal {
+  border-radius: 4px;
 }
