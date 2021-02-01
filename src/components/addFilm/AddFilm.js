@@ -42,6 +42,8 @@ const AddFilm = () => {
 
                   if (!values.title) {
                     errors.title = 'Required';
+                  } else if (values.title.length < 3) {
+                    errors.title = 'Length must be at least 3 characters long';
                   }
 
                   if (!values.description) {
@@ -57,9 +59,6 @@ const AddFilm = () => {
                   console.log('to jest timspatnmp:', dateNow);
                   console.log('TERAZ DATA JEST z niego:', new Date(dateNow));
                   const newVales = { ...values, watched: false, timestamp: dateNow };
-                  // console.log('values z add film', values);
-                  // values[watched] = true;
-                  // console.log('values z watched add film', newVales);
 
                   runDispatch(newVales);
                   resetForm();

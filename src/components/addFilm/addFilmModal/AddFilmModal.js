@@ -61,7 +61,7 @@ const AddFilmModal = () => {
           <div className="buttons is-flex-direction-column _added-film-buttons-container is-align-items-flex-start">
             <a
               className="button  is-primary is-outlined is-flex is-justify-content-start is-fullwidth mb-4"
-              onClick={() => {}}
+              onClick={() => dispatch(closeAddedFilmModal())}
             >
               <span className="icon">
                 <span>
@@ -70,9 +70,10 @@ const AddFilmModal = () => {
               </span>
               <span className="ml-4 is-size-6 has-text-white ">Add another film</span>
             </a>
-            <a
+            <Link
+              to={`/films/${currentFilm.id}`}
               className="button is-primary is-outlined is-flex is-justify-content-start is-fullwidth mb-4"
-              onClick={() => {}}
+              // onClick={() => <Redirect to={`/films/${currentFilm.id}`} />}
             >
               <span className="icon">
                 <span>
@@ -80,10 +81,10 @@ const AddFilmModal = () => {
                 </span>
               </span>
               <span className="ml-4 is-size-6 has-text-white ">Watch last added film</span>
-            </a>
-            <a
+            </Link>
+            <Link
               className="button is-primary is-outlined is-flex is-justify-content-start is-fullwidth "
-              onClick={() => {}}
+              to="/films"
             >
               <span className=" icon">
                 <span>
@@ -91,7 +92,7 @@ const AddFilmModal = () => {
                 </span>
               </span>
               <span className="ml-4 is-size-6 has-text-white  ">Back to all films</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
