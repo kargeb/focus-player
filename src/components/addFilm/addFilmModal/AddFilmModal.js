@@ -2,20 +2,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeAddedFilmModal } from '../../../redux/filmsReducer';
 import createThumbnail from '../../../helpers/createThumbnail';
 
 const AddFilmModal = () => {
   const dispatch = useDispatch();
-  const { currentFilm, isAddedFilmModalVisible } = useSelector((state) => state.filmsReducer);
-  console.log('CURRENT FILM:', currentFilm);
-
-  // const goToFilm = () => {
-  //   console.log('JKESES<EEJKHEKJEHKEJH');
-  //   return <Redirect to={`/films/${currentFilm.id}`} />;
-  // };
+  const { currentFilm } = useSelector((state) => state.filmsReducer);
 
   useEffect(() => {
     return () => dispatch(closeAddedFilmModal());
@@ -23,7 +17,7 @@ const AddFilmModal = () => {
 
   return (
     <div className="modal is-active">
-      <div className="modal-background" onClick={() => {}} />
+      <div className="modal-background" onClick={() => dispatch(closeAddedFilmModal())} />
       <div className="modal-content">
         <div className="box has-background-dark py-6">
           <h4 className="title is-size-3 post-title has-text-centered mb-3">Added successfully</h4>
@@ -31,12 +25,9 @@ const AddFilmModal = () => {
             <div className="media _added-film-container my-6">
               <figure className="media-left">
                 <p className="image is-64x64  is-square _img-added-film-modal ">
-                  {/* <img alt="thumbnail" src="https://bulma.io/images/placeholders/128x128.png" /> */}
-                  {/* <img alt="thumbnail" src="https://via.placeholder.com/320x180?text=No+Thumbnail" /> */}
                   <img
                     className="_img-added-film-modal"
                     alt="thumbnail"
-                    // src="https://i.ytimg.com/vi/E3KP0O73Os0/mqdefault.jpg"
                     src={createThumbnail(currentFilm.video_url)}
                   />
                 </p>
@@ -73,7 +64,6 @@ const AddFilmModal = () => {
             <Link
               to={`/films/${currentFilm.id}`}
               className="button is-primary is-outlined is-flex is-justify-content-start is-fullwidth mb-4"
-              // onClick={() => <Redirect to={`/films/${currentFilm.id}`} />}
             >
               <span className="icon">
                 <span>
@@ -100,8 +90,7 @@ const AddFilmModal = () => {
         type="button"
         className="modal-close is-large"
         aria-label="close"
-        // onClick={() => setDeleteModalVisibility(false)}
-        onClick={() => {}}
+        onClick={() => dispatch(closeAddedFilmModal())}
       />
     </div>
   );

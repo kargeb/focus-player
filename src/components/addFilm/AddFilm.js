@@ -1,7 +1,7 @@
 import { useHistory, Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFilm, filmsReducer } from '../../redux/filmsReducer';
+import { addFilm } from '../../redux/filmsReducer';
 import AddFilmModal from './addFilmModal/AddFilmModal';
 
 const AddFilm = () => {
@@ -16,7 +16,6 @@ const AddFilm = () => {
   return (
     <div>
       {isAddedFilmModalVisible && <AddFilmModal />}
-      {/* <AddFilmModal /> */}
       <section className="section">
         <div className="container">
           <div className="columns">
@@ -28,7 +27,6 @@ const AddFilm = () => {
                   to="https://www.youtube.com/"
                   target="_blank"
                   className="button is-dark is-outlined mb-4 _without-border "
-                  // onClick={() => <Redirect to={`/films/${currentFilm.id}`} />}
                 >
                   <span className="icon has-text-danger is-size-4">
                     <span>
@@ -74,8 +72,6 @@ const AddFilm = () => {
                 }}
                 onSubmit={(values, { resetForm }) => {
                   const dateNow = new Date().getTime();
-                  console.log('to jest timspatnmp:', dateNow);
-                  console.log('TERAZ DATA JEST z niego:', new Date(dateNow));
                   const newVales = { ...values, watched: false, timestamp: dateNow };
 
                   runDispatch(newVales);
