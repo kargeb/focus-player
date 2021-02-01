@@ -1,12 +1,13 @@
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFilm, filmsReducer } from '../../redux/filmsReducer';
+import { addFilm } from '../../redux/filmsReducer';
+import AddFilmModal from './addFilmModal/AddFilmModal';
 
 const AddFilm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { addFilmLoading } = useSelector((state) => state.filmsReducer);
+  const { addFilmLoading, isAddedFilmModalVisible } = useSelector((state) => state.filmsReducer);
 
   const runDispatch = (newFilm) => {
     dispatch(addFilm(newFilm));
@@ -14,11 +15,29 @@ const AddFilm = () => {
 
   return (
     <div>
+      {isAddedFilmModalVisible && <AddFilmModal />}
       <section className="section">
         <div className="container">
           <div className="columns">
             <div className="column is-offset-3 is-6">
               <h3 className="title is-3 has-text-centered">New film</h3>
+
+              <div className="has-text-centered">
+                <Link
+                  to="https://www.youtube.com/"
+                  target="_blank"
+                  className="button is-dark is-outlined mb-4 _without-border "
+                >
+                  <span className="icon has-text-danger is-size-4">
+                    <span>
+                      <i className="fab fa-youtube fa-lg" />
+                    </span>
+                  </span>
+                  <span className="ml-2 is-size-6 has-text-white has-text-weight-medium">
+                    Open YouTube
+                  </span>
+                </Link>
+              </div>
               <Formik
                 initialValues={{
                   video_url: '',
@@ -39,6 +58,8 @@ const AddFilm = () => {
 
                   if (!values.title) {
                     errors.title = 'Required';
+                  } else if (values.title.length < 3) {
+                    errors.title = 'Length must be at least 3 characters long';
                   }
 
                   if (!values.description) {
@@ -51,12 +72,7 @@ const AddFilm = () => {
                 }}
                 onSubmit={(values, { resetForm }) => {
                   const dateNow = new Date().getTime();
-                  console.log('to jest timspatnmp:', dateNow);
-                  console.log('TERAZ DATA JEST z niego:', new Date(dateNow));
                   const newVales = { ...values, watched: false, timestamp: dateNow };
-                  // console.log('values z add film', values);
-                  // values[watched] = true;
-                  // console.log('values z watched add film', newVales);
 
                   runDispatch(newVales);
                   resetForm();
@@ -66,7 +82,7 @@ const AddFilm = () => {
                   <form onSubmit={handleSubmit}>
                     <div className="field mb-4">
                       <label className="label _label" htmlFor="video_url">
-                        Url
+                        YouTube Url
                         <div className="control has-icons-left ">
                           <input
                             id="video_url"

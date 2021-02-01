@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { fetchFilms } from './redux/filmsReducer';
@@ -21,18 +21,20 @@ function App() {
     <Router>
       <Navbar />
       <Switch>
-        <Route exact path="/">
+        <Redirect exact from="/" to="/films" />
+        {/* <Route exact path="/">
           <Films />
-        </Route>
+        </Route> */}
         <Route exact path="/films">
           <Films />
         </Route>
-        <Route path="/films/:id">
+        <Route exact path="/films/:id">
           <Film />
         </Route>
         <Route path="/add-film">
           <AddFilm />
         </Route>
+        <Redirect to="/films" />
         {/* <Route path="/playlists">
           <Playlists />
         </Route> */}

@@ -355,6 +355,25 @@ html {
   color: #191b1f;
 }
 
-// ._placeholder::placeholder {
-//   color: #363636;
-// }
+._added-film-buttons-container {
+  width: 235px;
+  margin: 0 auto;
+}
+
+._added-film-container {
+  width: 260px;
+  margin: 0 auto;
+  padding: 15px 15px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+
+  &:hover {
+    border: 1px solid white;
+    cursor: pointer;
+  }
+}
+
+._img-added-film-modal {
+  border-radius: 4px;
+  object-fit: cover;
+}
