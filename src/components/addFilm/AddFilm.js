@@ -23,9 +23,10 @@ const AddFilm = () => {
               <h3 className="title is-3 has-text-centered">New film</h3>
 
               <div className="has-text-centered">
-                <Link
-                  to="https://www.youtube.com/"
+                <a
+                  href="https://www.youtube.com/"
                   target="_blank"
+                  rel="noreferrer"
                   className="button is-dark is-outlined mb-4 _without-border "
                 >
                   <span className="icon has-text-danger is-size-4">
@@ -36,7 +37,7 @@ const AddFilm = () => {
                   <span className="ml-2 is-size-6 has-text-white has-text-weight-medium">
                     Open YouTube
                   </span>
-                </Link>
+                </a>
               </div>
               <Formik
                 initialValues={{
