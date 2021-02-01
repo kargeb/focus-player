@@ -21,6 +21,9 @@ const EDIT_FILM_FAILED = 'EDIT_FILM_FAILED';
 const SELECT_CURRENT_FILM = 'SELECT_CURRENT_FILM';
 
 const HANDLE_WATCHED_FILM_CHECKBOX = 'HANDLE_WATCHED_FILM_CHECKBOX';
+const CLOSE_ADDED_FILM_MODAL = 'CLOSE_ADDED_FILM_MODAL';
+
+export const closeAddedFilmModal = () => ({ type: CLOSE_ADDED_FILM_MODAL });
 
 export const handleWatchedFilmCheckbox = (isWatched) => ({
   type: HANDLE_WATCHED_FILM_CHECKBOX,
@@ -230,6 +233,13 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
       const isWatched = action.payload;
       return {
         ...state,
+      };
+    }
+    case CLOSE_ADDED_FILM_MODAL: {
+      console.log('JESTEM W REDUCERZE W CLSOE MODALE');
+      return {
+        ...state,
+        isAddedFilmModalVisible: false,
       };
     }
     default:
