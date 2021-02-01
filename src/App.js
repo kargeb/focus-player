@@ -22,13 +22,13 @@ function App() {
       <Navbar />
       <Switch>
         <Redirect exact from="/" to="/films" />
-        <Route exact path="/">
+        {/* <Route exact path="/">
           <Films />
-        </Route>
+        </Route> */}
         <Route exact path="/films">
           <Films />
         </Route>
-        <Route path="/films/:id">
+        <Route exact path="/films/:id">
           <Film />
         </Route>
         <Route path="/add-film">

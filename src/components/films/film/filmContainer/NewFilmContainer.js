@@ -82,7 +82,6 @@ const FilmContainer = () => {
                     className={`button  is-primary _without-border ${
                       !editMode && 'is-outlined'
                     }  mr-4`}
-                    // onClick={() => dispatch(toggleEditFilmMode())}
                     onClick={() => setEditMode(!editMode)}
                   >
                     <span className="icon is-medium px-5">
@@ -92,7 +91,6 @@ const FilmContainer = () => {
                   <a
                     type="button"
                     className="button is-primary _without-border is-outlined"
-                    // onClick={() => dispatch(toggleEditFilmMode())}
                     onClick={() => setDeleteModalVisibility(true)}
                   >
                     <span className="icon  is-medium px-5">

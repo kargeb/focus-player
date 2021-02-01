@@ -1,6 +1,6 @@
-const API_URL = 'https://agile-depths-96654.herokuapp.com';
+// const API_URL = 'https://agile-depths-96654.herokuapp.com';
 
-// const API_URL = 'http://localhost:3333';
+const API_URL = 'http://localhost:3333';
 
 const ADD_FILM_REQUESTED = 'ADD_FILM_REQUESTED';
 const ADD_FILM_SUCCEEDED = 'ADD_FILM_SUCCEEDED';
@@ -20,12 +20,15 @@ const EDIT_FILM_FAILED = 'EDIT_FILM_FAILED';
 
 const SELECT_CURRENT_FILM = 'SELECT_CURRENT_FILM';
 
-const HANDLE_WATCHED_FILM_CHECKBOX = 'HANDLE_WATCHED_FILM_CHECKBOX';
+// const HANDLE_WATCHED_FILM_CHECKBOX = 'HANDLE_WATCHED_FILM_CHECKBOX';
+const CLOSE_ADDED_FILM_MODAL = 'CLOSE_ADDED_FILM_MODAL';
 
-export const handleWatchedFilmCheckbox = (isWatched) => ({
-  type: HANDLE_WATCHED_FILM_CHECKBOX,
-  payload: isWatched,
-});
+export const closeAddedFilmModal = () => ({ type: CLOSE_ADDED_FILM_MODAL });
+
+// export const handleWatchedFilmCheckbox = (isWatched) => ({
+//   type: HANDLE_WATCHED_FILM_CHECKBOX,
+//   payload: isWatched,
+// });
 
 export const selectCurrentFilm = (id) => ({
   type: SELECT_CURRENT_FILM,
@@ -145,6 +148,7 @@ const INITIAL_STATE = {
   addFilmLoading: false,
   currentFilm: null,
   isEdited: false,
+  isAddedFilmModalVisible: false,
 };
 
 export const filmsReducer = (state = INITIAL_STATE, action) => {
@@ -177,8 +181,10 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
     case ADD_FILM_SUCCEEDED:
       return {
         ...state,
+        currentFilm: { ...action.payload },
         films: [...state.films, { ...action.payload }],
         addFilmLoading: false,
+        isAddedFilmModalVisible: true,
       };
     case ADD_FILM_FAILED:
       console.log('ADD_FILM_FAILED');
@@ -223,10 +229,16 @@ export const filmsReducer = (state = INITIAL_STATE, action) => {
         currentFilm,
       };
     }
-    case HANDLE_WATCHED_FILM_CHECKBOX: {
-      const isWatched = action.payload;
+    // case HANDLE_WATCHED_FILM_CHECKBOX: {
+    //   const isWatched = action.payload;
+    //   return {
+    //     ...state,
+    //   };
+    // }
+    case CLOSE_ADDED_FILM_MODAL: {
       return {
         ...state,
+        isAddedFilmModalVisible: false,
       };
     }
     default:

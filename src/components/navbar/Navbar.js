@@ -33,18 +33,6 @@ const Navbar = () => {
         </div>
 
         <div id="navbarBasicExample" className={`navbar-menu ${isActive}`}>
-          {/* <div className="navbar-end"> */}
-
-          {/* <div className="navbar-start">
-            <NavLink
-              activeClassName="is-active"
-              className="navbar-item px-5 ml-4 is-size-5"
-              exact
-              to="/playlists"
-            >
-              Playlists
-            </NavLink>
-          </div> */}
           <div className="navbar-end">
             <div className="navbar-item ">
               <NavLink
